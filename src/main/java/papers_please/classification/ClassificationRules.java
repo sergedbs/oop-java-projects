@@ -10,29 +10,29 @@ public class ClassificationRules {
     public static boolean isStarWars(Individual individual) {
         return (matchesPlanet(individual.planet(), "Kashyyyk") &&
                 matchesIsHumanoid(individual.isHumanoid(), false) &&
-                matchesAgeRange(individual.age(), 0, 400) &&
+                matchesAgeRange(individual.age(), 400) &&
                 matchesTraits(individual, Set.of("HAIRY", "TALL"))) ||
                 (matchesPlanet(individual.planet(), "Endor") &&
                         matchesIsHumanoid(individual.isHumanoid(), false) &&
-                        matchesAgeRange(individual.age(), 0, 60) &&
+                        matchesAgeRange(individual.age(), 60) &&
                         matchesTraits(individual, Set.of("SHORT", "HAIRY")));
     }
 
     public static boolean isMarvel(Individual individual) {
         return matchesPlanet(individual.planet(), "Asgard") &&
                 matchesIsHumanoid(individual.isHumanoid(), true) &&
-                matchesAgeRange(individual.age(), 0, 5000) &&
+                matchesAgeRange(individual.age(), 5000) &&
                 matchesTraits(individual, Set.of("BLONDE", "TALL"));
     }
 
     public static boolean isHitchhikers(Individual individual) {
         return (matchesPlanet(individual.planet(), "Betelgeuse") &&
                 matchesIsHumanoid(individual.isHumanoid(), true) &&
-                matchesAgeRange(individual.age(), 0, 100) &&
+                matchesAgeRange(individual.age(), 100) &&
                 matchesTraits(individual, Set.of("EXTRA_ARMS", "EXTRA_HEAD"))) ||
                 (matchesPlanet(individual.planet(), "Vogsphere") &&
                         matchesIsHumanoid(individual.isHumanoid(), false) &&
-                        matchesAgeRange(individual.age(), 0, 200) &&
+                        matchesAgeRange(individual.age(), 200) &&
                         matchesTraits(individual, Set.of("GREEN", "BULKY")));
     }
 
@@ -42,7 +42,7 @@ public class ClassificationRules {
                 matchesTraits(individual, Set.of("BLONDE", "POINTY_EARS"))) ||
                 (matchesPlanet(individual.planet(), "Earth") &&
                         matchesIsHumanoid(individual.isHumanoid(), true) &&
-                        matchesAgeRange(individual.age(), 0, 200) &&
+                        matchesAgeRange(individual.age(), 200) &&
                         matchesTraits(individual, Set.of("SHORT", "BULKY")));
     }
 
@@ -54,8 +54,8 @@ public class ClassificationRules {
         return actualIsHumanoid == null || actualIsHumanoid.equals(expectedIsHumanoid);
     }
 
-    private static boolean matchesAgeRange(Integer age, int min, int max) {
-        return age == null || (age >= min && age <= max);
+    private static boolean matchesAgeRange(Integer age, int max) {
+        return age == null || (age >= 0 && age <= max);
     }
 
     private static boolean matchesTraits(Individual individual, Set<String> requiredTraits) {
