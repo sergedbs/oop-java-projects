@@ -1,4 +1,4 @@
-package papers_please.models;
+package org.sergedb.oop.papers_please.models;
 
 import java.util.List;
 

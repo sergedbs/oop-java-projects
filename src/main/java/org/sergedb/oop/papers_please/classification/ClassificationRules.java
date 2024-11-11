@@ -1,6 +1,6 @@
-package papers_please.classification;
+package org.sergedb.oop.papers_please.classification;
 
-import papers_please.models.Individual;
+import org.sergedb.oop.papers_please.models.Individual;
 
 import java.util.HashSet;
 import java.util.Set;

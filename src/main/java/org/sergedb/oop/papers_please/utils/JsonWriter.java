@@ -1,9 +1,9 @@
-package papers_please.utils;
+package org.sergedb.oop.papers_please.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import papers_please.models.Individual;
-import papers_please.models.Universe;
+import org.sergedb.oop.papers_please.models.Individual;
+import org.sergedb.oop.papers_please.models.Universe;
 
 import java.io.IOException;
 import java.nio.file.Files;

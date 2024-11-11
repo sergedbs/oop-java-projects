@@ -4,7 +4,7 @@ This repository contains various Object-Oriented Programming (OOP) projects impl
 
 ## Projects
 
-### [1. Papers Please Classification](src/main/java/papers_please)
+### [0. Papers Please Classification](src/main/java/org/sergedb/oop/papers_please)
 A project that classifies individuals into different universes based on predefined rules.
 
 ## License

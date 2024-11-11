@@ -1,10 +1,10 @@
-package papers_please;
+package org.sergedb.oop.papers_please;
 
-import papers_please.classification.Classifier;
-import papers_please.models.Individual;
-import papers_please.models.Universe;
-import papers_please.utils.JsonReader;
-import papers_please.utils.JsonWriter;
+import org.sergedb.oop.papers_please.classification.Classifier;
+import org.sergedb.oop.papers_please.models.Individual;
+import org.sergedb.oop.papers_please.models.Universe;
+import org.sergedb.oop.papers_please.utils.JsonReader;
+import org.sergedb.oop.papers_please.utils.JsonWriter;
 
 import java.io.IOException;
 import java.util.List;
