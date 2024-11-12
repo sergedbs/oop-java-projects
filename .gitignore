@@ -1,9 +1,10 @@
 target/
+**/src/main/resources/output/
+**/target/
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-
-src/main/resources/*/output/*
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
