@@ -1,4 +1,6 @@
-package org.sergedb.oop.classes.task_one;
+package org.sergedb.oop.classes.displayassistant;
+
+import org.sergedb.oop.classes.display.Display;
 
 import java.util.HashMap;
 import java.util.Map;

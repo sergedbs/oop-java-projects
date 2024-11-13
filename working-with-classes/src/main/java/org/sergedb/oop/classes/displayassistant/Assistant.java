@@ -1,7 +1,7 @@
-package org.sergedb.oop.classes.task_three;
+package org.sergedb.oop.classes.displayassistant;
 
-import org.sergedb.oop.classes.task_one.ComparisonService;
-import org.sergedb.oop.classes.task_one.Display;
+import org.sergedb.oop.classes.display.ComparisonService;
+import org.sergedb.oop.classes.display.Display;
 
 import java.util.List;
 
@@ -34,7 +34,6 @@ public class Assistant {
         for (int i = 0; i < assignedDisplays.size() - 1; i++) {
             Display currentDisplay = assignedDisplays.get(i);
             Display nextDisplay = assignedDisplays.get(i + 1);
-            ComparisonService.compareDisplays(currentDisplay, nextDisplay);
         }
     }
 
