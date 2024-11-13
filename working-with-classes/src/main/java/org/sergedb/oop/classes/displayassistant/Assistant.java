@@ -1,6 +1,5 @@
 package org.sergedb.oop.classes.displayassistant;
 
-import org.sergedb.oop.classes.display.ComparisonService;
 import org.sergedb.oop.classes.display.Display;
 
 import java.util.List;

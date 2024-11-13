@@ -1,9 +1,6 @@
 package org.sergedb.oop.classes.display;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class ComparisonService {
+public class CompareManager {
 
 public String compareDisplays(Display display1, Display display2) {
     int sizeComparison = Integer.compare(
