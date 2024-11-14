@@ -1,6 +1,6 @@
 package org.sergedb.oop.classes.display;
 
-public class CompareManager {
+public class DisplayComparator {
 
 public String compareDisplays(Display display1, Display display2) {
     int sizeComparison = Integer.compare(

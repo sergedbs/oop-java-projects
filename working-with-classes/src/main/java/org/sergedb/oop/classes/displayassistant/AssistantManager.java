@@ -5,7 +5,7 @@ import org.sergedb.oop.classes.display.Display;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DisplayManager {
+public class AssistantManager {
     private final Map<String, Display> displayList = new HashMap<>();
 
     public void addDisplay(String model, Display display) {

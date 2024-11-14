@@ -1,6 +1,6 @@
 package org.sergedb.oop.classes;
 
-import org.sergedb.oop.classes.display.CompareManager;
+import org.sergedb.oop.classes.display.DisplayComparator;
 import org.sergedb.oop.classes.display.Display;
 import org.sergedb.oop.classes.textanalyzer.FileReader;
 import org.sergedb.oop.classes.textanalyzer.TextData;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Runner {
+public class TaskRunner {
 
     private static final String DEFAULT_FILE_PATH = "working-with-classes/src/main/resources/input.txt";
 
@@ -52,11 +52,11 @@ public class Runner {
         Display samsungDisplay = new Display(3840, 2160, 163.18f, "Samsung 4K 27 inch");
         Display dellDisplay = new Display(1920, 1080, 157.35f, "Dell FHD 14 inch");
 
-        CompareManager compareManager = new CompareManager();
+        DisplayComparator displayComparator = new DisplayComparator();
 
-        System.out.println(compareManager.compareDisplays(lgDisplay, samsungDisplay));
-        System.out.println(compareManager.compareDisplays(dellDisplay, lgDisplay));
-        System.out.println(compareManager.compareDisplays(samsungDisplay, dellDisplay));
+        System.out.println(displayComparator.compareDisplays(lgDisplay, samsungDisplay));
+        System.out.println(displayComparator.compareDisplays(dellDisplay, lgDisplay));
+        System.out.println(displayComparator.compareDisplays(samsungDisplay, dellDisplay));
     }
 
     private void runTextTask(List<String> args) {
