@@ -1,4 +1,4 @@
-package org.sergedb.oop.classes.textanalyzer;
+package org.sergedb.oop.classes.textprocessing;
 
 public class TextData {
     private final String fileName;

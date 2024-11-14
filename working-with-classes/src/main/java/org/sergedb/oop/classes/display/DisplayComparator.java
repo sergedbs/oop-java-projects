@@ -2,7 +2,7 @@ package org.sergedb.oop.classes.display;
 
 import java.util.List;
 
-public class Comparison {
+public class DisplayComparator {
 
     private String compareDisplays(Display display1, Display display2) {
         int sizeComparison = Integer.compare(
@@ -27,12 +27,14 @@ public class Comparison {
         return display1.model() + " is " + sizeResult + " and " + sharpnessResult + " " + display2.model();
     }
 
-    public void compareDisplays(List<Display> displays) {
+    public String resultsToString(List<Display> displays) {
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < displays.size() - 1; i++) {
             Display display1 = displays.get(i);
             Display display2 = displays.get(i + 1);
-            System.out.println(compareDisplays(display1, display2));
+            result.append(compareDisplays(display1, display2)).append("\n");
         }
+        return result.toString();
     }
 
 

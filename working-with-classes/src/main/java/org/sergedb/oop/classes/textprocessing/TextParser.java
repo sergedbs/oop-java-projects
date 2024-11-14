@@ -1,4 +1,4 @@
-package org.sergedb.oop.classes.textanalyzer;
+package org.sergedb.oop.classes.textprocessing;
 
 import java.util.Arrays;
 import java.util.Comparator;
