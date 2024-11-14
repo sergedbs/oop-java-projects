@@ -22,20 +22,19 @@ public class TaskRunner {
         Map<String, List<String>> taskArgsMap = parseArguments(args);
 
         if (shouldExecuteTask(taskArgsMap, "--first", noArgs)) {
-            runDisplayTask(taskArgsMap.get("--first"));
+            runDisplayTask(getFile(taskArgsMap.get("--first"), DISPLAY_JSON_PATH));
         }
         if (shouldExecuteTask(taskArgsMap, "--second", noArgs)) {
-            runTextTask(taskArgsMap.get("--second"));
+            runTextTask(getFile(taskArgsMap.get("--second"), DEFAULT_FILE_PATH));
         }
     }
 
     private Map<String, List<String>> parseArguments(String[] args) {
         Map<String, List<String>> taskArgsMap = new HashMap<>();
         for (int i = 0; i < args.length; i++) {
-            String arg = args[i];
-            if (arg.equals("--first") || arg.equals("--second")) {
-                taskArgsMap.putIfAbsent(arg, new ArrayList<>());
-                List<String> taskArgs = taskArgsMap.get(arg);
+            if (args[i].equals("--first") || args[i].equals("--second")) {
+                taskArgsMap.putIfAbsent(args[i], new ArrayList<>());
+                List<String> taskArgs = taskArgsMap.get(args[i]);
                 while (i + 1 < args.length && !args[i + 1].startsWith("--")) {
                     taskArgs.add(args[++i]);
                 }
@@ -48,56 +47,53 @@ public class TaskRunner {
         return taskArgsMap.containsKey(taskFlag) || noArgs;
     }
 
-    private void runDisplayTask(List<String> args) {
+    private void runDisplayTask(String filePath) {
         System.out.println("\n----------- [Task 1] -----------");
-
-        String filePath = getDisplayJsonPath(args);
         loadDisplays(filePath);
-
-        comparison.compareDisplays(displays);
+        getComparison().compareDisplays(displays);
     }
 
-    private void runTextTask(List<String> args) {
+    private void runTextTask(String filePath) {
         System.out.println("\n----------- [Task 2] -----------");
 
-        String filePath = getFilePath(args);
+        String text = loadFileContent(filePath);
+        if (text == null) return;
 
-        FileReader fileReader = new FileReader();
-        String text = fileReader.readFileAsString(filePath);
-
-        if (text == null || text.isEmpty()) {
-            System.out.println("File not found or empty.");
-            return;
-        }
-
-        String fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
-
-        TextParser textParser = new TextParser();
-        TextData textData = textParser.parseText(fileName, text);
-
+        TextData textData = new TextParser().parseText(getFileName(filePath), text);
         System.out.println(textData);
     }
 
     private void loadDisplays(String filePath) {
         if (displays == null) {
             displays = jsonLoader.loadDisplaysFromJson(filePath);
+        }
+    }
+
+    private Comparison getComparison() {
+        if (comparison == null) {
             comparison = new Comparison();
         }
+        return comparison;
     }
 
-    private String getFilePath(List<String> args) {
+    private String loadFileContent(String filePath) {
+        String content = new FileReader().readFileAsString(filePath);
+        if (content == null || content.isEmpty()) {
+            System.out.println("File not found or empty.");
+            return null;
+        }
+        return content;
+    }
+
+    private String getFile(List<String> args, String defaultPath) {
         if (args == null || args.isEmpty()) {
-            System.out.println("No file path provided. Using default file: " + DEFAULT_FILE_PATH);
-            return DEFAULT_FILE_PATH;
+            System.out.println("No file path provided. Using default file: " + defaultPath);
+            return defaultPath;
         }
         return args.getFirst();
     }
 
-    private String getDisplayJsonPath(List<String> args) {
-        if (args == null || args.isEmpty()) {
-            System.out.println("No file path provided. Using default file: " + DISPLAY_JSON_PATH);
-            return DISPLAY_JSON_PATH;
-        }
-        return args.getFirst();
+    private String getFileName(String filePath) {
+        return filePath.substring(filePath.lastIndexOf('/') + 1);
     }
 }
