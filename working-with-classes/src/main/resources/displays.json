@@ -1,0 +1,56 @@
+[
+    {
+        "width": 2560,
+        "height": 1440,
+        "ppi": 127.7,
+        "model": "LG 1440p 23 inch"
+    },
+    {
+        "width": 3840,
+        "height": 2160,
+        "ppi": 163.18,
+        "model": "Samsung 4K 27 inch"
+    },
+    {
+        "width": 1920,
+        "height": 1080,
+        "ppi": 157.35,
+        "model": "Dell FHD 14 inch"
+    },
+    {
+        "width": 3440,
+        "height": 1440,
+        "ppi": 109.68,
+        "model": "Acer Ultrawide 34 inch"
+    },
+    {
+        "width": 5120,
+        "height": 2880,
+        "ppi": 218.58,
+        "model": "Apple iMac Retina 27 inch"
+    },
+    {
+        "width": 2560,
+        "height": 1080,
+        "ppi": 96.5,
+        "model": "LG Ultrawide 29 inch"
+    },
+    {
+        "width": 3840,
+        "height": 1600,
+        "ppi": 113.4,
+        "model": "Dell Ultrasharp 38 inch"
+    },
+    {
+        "width": 1366,
+        "height": 768,
+        "ppi": 112.3,
+        "model": "HP Pavilion 15 inch"
+    },
+    {
+        "width": 3840,
+        "height": 1080,
+        "ppi": 81.59,
+        "model": "Samsung Ultrawide 49 inch"
+    }
+]

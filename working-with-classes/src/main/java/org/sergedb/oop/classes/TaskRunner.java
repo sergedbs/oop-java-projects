@@ -1,26 +1,28 @@
 package org.sergedb.oop.classes;
 
-import org.sergedb.oop.classes.display.DisplayComparator;
+import org.sergedb.oop.classes.display.Comparison;
 import org.sergedb.oop.classes.display.Display;
 import org.sergedb.oop.classes.textanalyzer.FileReader;
 import org.sergedb.oop.classes.textanalyzer.TextData;
 import org.sergedb.oop.classes.textanalyzer.TextParser;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TaskRunner {
 
     private static final String DEFAULT_FILE_PATH = "working-with-classes/src/main/resources/input.txt";
+    private static final String DISPLAY_JSON_PATH = "working-with-classes/src/main/resources/displays.json";
+
+    private final JsonLoader jsonLoader = new JsonLoader();
+    private List<Display> displays;
+    private Comparison comparison;
 
     public void run(String[] args) {
         boolean noArgs = args.length == 0;
         Map<String, List<String>> taskArgsMap = parseArguments(args);
 
         if (shouldExecuteTask(taskArgsMap, "--first", noArgs)) {
-            runDisplayTask();
+            runDisplayTask(taskArgsMap.get("--first"));
         }
         if (shouldExecuteTask(taskArgsMap, "--second", noArgs)) {
             runTextTask(taskArgsMap.get("--second"));
@@ -46,17 +48,13 @@ public class TaskRunner {
         return taskArgsMap.containsKey(taskFlag) || noArgs;
     }
 
-    private void runDisplayTask() {
+    private void runDisplayTask(List<String> args) {
         System.out.println("\n----------- [Task 1] -----------");
-        Display lgDisplay = new Display(2560, 1440, 127.7f, "LG 1440p 23 inch");
-        Display samsungDisplay = new Display(3840, 2160, 163.18f, "Samsung 4K 27 inch");
-        Display dellDisplay = new Display(1920, 1080, 157.35f, "Dell FHD 14 inch");
 
-        DisplayComparator displayComparator = new DisplayComparator();
+        String filePath = getDisplayJsonPath(args);
+        loadDisplays(filePath);
 
-        System.out.println(displayComparator.compareDisplays(lgDisplay, samsungDisplay));
-        System.out.println(displayComparator.compareDisplays(dellDisplay, lgDisplay));
-        System.out.println(displayComparator.compareDisplays(samsungDisplay, dellDisplay));
+        comparison.compareDisplays(displays);
     }
 
     private void runTextTask(List<String> args) {
@@ -80,10 +78,25 @@ public class TaskRunner {
         System.out.println(textData);
     }
 
+    private void loadDisplays(String filePath) {
+        if (displays == null) {
+            displays = jsonLoader.loadDisplaysFromJson(filePath);
+            comparison = new Comparison();
+        }
+    }
+
     private String getFilePath(List<String> args) {
         if (args == null || args.isEmpty()) {
             System.out.println("No file path provided. Using default file: " + DEFAULT_FILE_PATH);
             return DEFAULT_FILE_PATH;
+        }
+        return args.getFirst();
+    }
+
+    private String getDisplayJsonPath(List<String> args) {
+        if (args == null || args.isEmpty()) {
+            System.out.println("No file path provided. Using default file: " + DISPLAY_JSON_PATH);
+            return DISPLAY_JSON_PATH;
         }
         return args.getFirst();
     }
