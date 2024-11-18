@@ -13,16 +13,15 @@ public class TextParser {
 
     public TextData parseText(String fileName, String content) {
         String text = content.replaceAll(REGEX_URL, "");
-        TextData textData = new TextData(fileName, text);
-
-        textData.setWordCount(countWords(text));
-        textData.setVowelCount(countVowels(text));
-        textData.setConsonantCount(countConsonants(text));
-        textData.setLetterCount(countLetters(text));
-        textData.setSentenceCount(countSentences(text));
-        textData.setLongestWord(findLongestWord(text));
-
-        return textData;
+        return new TextData(
+            fileName,
+                countWords(text),
+            countVowels(text),
+            countConsonants(text),
+            countLetters(text),
+            countSentences(text),
+            findLongestWord(text)
+        );
     }
 
     private int countWords(String text) {

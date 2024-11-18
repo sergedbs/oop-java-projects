@@ -2,72 +2,20 @@ package org.sergedb.oop.classes.tasks.textprocessing;
 
 public class TextData {
     private final String fileName;
-    private final String text;
-    private int wordCount;
-    private int vowelCount;
-    private int consonantCount;
-    private int letterCount;
-    private int sentenceCount;
-    private String longestWord;
+    private final int wordCount;
+    private final int vowelCount;
+    private final int consonantCount;
+    private final int letterCount;
+    private final int sentenceCount;
+    private final String longestWord;
 
-    public TextData(String fileName, String text) {
+    public TextData(String fileName, int wordCount, int vowelCount, int consonantCount, int letterCount, int sentenceCount, String longestWord) {
         this.fileName = fileName;
-        this.text = text;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public int getWordCount() {
-        return wordCount;
-    }
-
-    public void setWordCount(int wordCount) {
         this.wordCount = wordCount;
-    }
-
-    public int getVowelCount() {
-        return vowelCount;
-    }
-
-    public void setVowelCount(int vowelCount) {
         this.vowelCount = vowelCount;
-    }
-
-    public int getConsonantCount() {
-        return consonantCount;
-    }
-
-    public void setConsonantCount(int consonantCount) {
         this.consonantCount = consonantCount;
-    }
-
-    public int getLetterCount() {
-        return letterCount;
-    }
-
-    public void setLetterCount(int letterCount) {
         this.letterCount = letterCount;
-    }
-
-    public int getSentenceCount() {
-        return sentenceCount;
-    }
-
-    public void setSentenceCount(int sentenceCount) {
         this.sentenceCount = sentenceCount;
-    }
-
-    public String getLongestWord() {
-        return longestWord;
-    }
-
-    public void setLongestWord(String longestWord) {
         this.longestWord = longestWord;
     }
 
