@@ -1,7 +1,6 @@
 [
     {
         "id": 1,
-        "brand": "LG",
         "width": 2560,
         "height": 1440,
         "ppi": 127.7,
@@ -9,7 +8,6 @@
     },
     {
         "id": 2,
-        "brand": "Dell",
         "width": 3840,
         "height": 2160,
         "ppi": 163.18,
@@ -17,7 +15,6 @@
     },
     {
         "id": 3,
-        "brand": "Samsung",
         "width": 1920,
         "height": 1080,
         "ppi": 157.35,
@@ -25,7 +22,6 @@
     },
     {
         "id": 4,
-        "brand": "Acer",
         "width": 3440,
         "height": 1440,
         "ppi": 109.68,
@@ -33,7 +29,6 @@
     },
     {
         "id": 5,
-        "brand": "Apple",
         "width": 5120,
         "height": 2880,
         "ppi": 218.58,
@@ -41,7 +36,6 @@
     },
     {
         "id": 6,
-        "brand": "LG",
         "width": 2560,
         "height": 1080,
         "ppi": 96.5,
@@ -49,7 +43,6 @@
     },
     {
         "id": 7,
-        "brand": "Dell",
         "width": 3840,
         "height": 1600,
         "ppi": 113.4,
@@ -57,7 +50,6 @@
     },
     {
         "id": 8,
-        "brand": "HP",
         "width": 1366,
         "height": 768,
         "ppi": 112.3,
@@ -65,7 +57,6 @@
     },
     {
         "id": 9,
-        "brand": "Samsung",
         "width": 3840,
         "height": 1080,
         "ppi": 81.59,

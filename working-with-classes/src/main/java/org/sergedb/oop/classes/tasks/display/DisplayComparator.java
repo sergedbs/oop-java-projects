@@ -1,7 +1,5 @@
 package org.sergedb.oop.classes.tasks.display;
 
-import java.util.List;
-
 public class DisplayComparator {
 
     private String compareDisplays(Display display1, Display display2) {
@@ -30,16 +28,4 @@ public class DisplayComparator {
     public String compareTwoDisplays(Display display1, Display display2) {
         return compareDisplays(display1, display2);
     }
-
-    public String resultsToString(List<Display> displays) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < displays.size() - 1; i++) {
-            Display display1 = displays.get(i);
-            Display display2 = displays.get(i + 1);
-            result.append(compareDisplays(display1, display2)).append("\n");
-        }
-        return result.toString();
-    }
-
-
 }

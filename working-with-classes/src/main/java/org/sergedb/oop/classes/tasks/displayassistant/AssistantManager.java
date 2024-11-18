@@ -12,7 +12,7 @@ public class AssistantManager {
 
     public AssistantManager(List<Display> displayList, String assistantName) {
         this.displayList = displayList;
-        this.assistant = new Assistant(assistantName);
+        this.assistant = new Assistant();
         this.assistantName = assistantName;
     }
 
@@ -62,8 +62,11 @@ public class AssistantManager {
         if (display == null || !assistant.getAssignedDisplays().contains(display)) {
             System.out.println(assistantName + ": Oh no! This display (ID: " + id + ") does not exist or is not added to your cart.");
         } else {
-            assistant.removeDisplay(display);
-            System.out.println("Great choice! You bought a shiny, brand new" + display.model() +  " (ID: " + id + "). Enjoy it!");
+            if (assistant.removeDisplay(display)) {
+                System.out.println("Great choice! You bought a shiny, brand new" + display.model() +  " (ID: " + id + "). Enjoy it!");
+            } else {
+                System.out.println("Oh no! Something went wrong. Please try again.");
+            }
         }
     }
 
@@ -81,7 +84,7 @@ public class AssistantManager {
         System.out.println("\n" + assistantName + ": Welcome to our displays store! Bellow are your options:");
         while (true) {
             System.out.println("\nOptions:");
-            System.out.println("A(ssign) B(uy) C(ompare) S(show) E(xit)");
+            System.out.println("A(ssign) B(uy) C(ompare) S(how) E(xit)");
             String choice = scanner.nextLine().trim().toUpperCase();
 
             switch (choice) {
