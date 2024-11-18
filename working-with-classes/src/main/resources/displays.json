@@ -1,53 +1,71 @@
 [
     {
+        "id": 1,
+        "brand": "LG",
         "width": 2560,
         "height": 1440,
         "ppi": 127.7,
         "model": "LG 1440p 23 inch"
     },
     {
+        "id": 2,
+        "brand": "Dell",
         "width": 3840,
         "height": 2160,
         "ppi": 163.18,
         "model": "Samsung 4K 27 inch"
     },
     {
+        "id": 3,
+        "brand": "Samsung",
         "width": 1920,
         "height": 1080,
         "ppi": 157.35,
         "model": "Dell FHD 14 inch"
     },
     {
+        "id": 4,
+        "brand": "Acer",
         "width": 3440,
         "height": 1440,
         "ppi": 109.68,
         "model": "Acer Ultrawide 34 inch"
     },
     {
+        "id": 5,
+        "brand": "Apple",
         "width": 5120,
         "height": 2880,
         "ppi": 218.58,
         "model": "Apple iMac Retina 27 inch"
     },
     {
+        "id": 6,
+        "brand": "LG",
         "width": 2560,
         "height": 1080,
         "ppi": 96.5,
         "model": "LG Ultrawide 29 inch"
     },
     {
+        "id": 7,
+        "brand": "Dell",
         "width": 3840,
         "height": 1600,
         "ppi": 113.4,
         "model": "Dell Ultrasharp 38 inch"
     },
     {
+        "id": 8,
+        "brand": "HP",
         "width": 1366,
         "height": 768,
         "ppi": 112.3,
         "model": "HP Pavilion 15 inch"
     },
     {
+        "id": 9,
+        "brand": "Samsung",
         "width": 3840,
         "height": 1080,
         "ppi": 81.59,

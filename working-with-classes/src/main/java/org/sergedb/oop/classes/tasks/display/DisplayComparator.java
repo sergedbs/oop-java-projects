@@ -1,4 +1,4 @@
-package org.sergedb.oop.classes.display;
+package org.sergedb.oop.classes.tasks.display;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class DisplayComparator {
         int sharpnessComparison = Float.compare(display1.ppi(), display2.ppi());
 
         String sizeResult = (sizeComparison == 0) ? "the same size as"
-                                                  : (sizeComparison > 0) ? "larger than"
-                                                                         : "smaller than";
+                                                  : (sizeComparison > 0) ? "larger"
+                                                                         : "smaller";
 
         String sharpnessResult = (sharpnessComparison == 0) ? "the same sharpness as"
                                                             : (sharpnessComparison > 0) ? "sharper than"
@@ -25,6 +25,10 @@ public class DisplayComparator {
         }
 
         return display1.model() + " is " + sizeResult + " and " + sharpnessResult + " " + display2.model();
+    }
+
+    public String compareTwoDisplays(Display display1, Display display2) {
+        return compareDisplays(display1, display2);
     }
 
     public String resultsToString(List<Display> displays) {
