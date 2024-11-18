@@ -1,7 +1,7 @@
-package org.sergedb.oop.papers_please.classification;
+package org.sergedb.oop.intro.classification;
 
-import org.sergedb.oop.papers_please.models.Individual;
-import org.sergedb.oop.papers_please.models.Universe;
+import org.sergedb.oop.intro.models.Individual;
+import org.sergedb.oop.intro.models.Universe;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

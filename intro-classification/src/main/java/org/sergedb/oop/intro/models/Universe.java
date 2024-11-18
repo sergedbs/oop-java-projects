@@ -1,4 +1,4 @@
-package org.sergedb.oop.papers_please.models;
+package org.sergedb.oop.intro.models;
 
 public enum Universe {
     STAR_WARS,

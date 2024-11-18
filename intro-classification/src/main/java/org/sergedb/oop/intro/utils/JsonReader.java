@@ -1,8 +1,8 @@
-package org.sergedb.oop.papers_please.utils;
+package org.sergedb.oop.intro.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.sergedb.oop.papers_please.models.Individual;
+import org.sergedb.oop.intro.models.Individual;
 
 import java.io.File;
 import java.io.IOException;
