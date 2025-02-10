@@ -1,4 +1,6 @@
-package org.sergedb.oop.inheritance.coffee;
+package org.sergedb.oop.inheritance.drinks;
+
+import org.sergedb.oop.inheritance.utils.Intensity;
 
 public class Americano extends Coffee{
     protected int mlOfWater;
@@ -12,5 +14,9 @@ public class Americano extends Coffee{
 
     public Americano() {
         this("Americano", Intensity.NORMAL, 150);
+    }
+
+    public String coffeeDetails() {
+        return super.coffeeDetails() + "\nAdding " + mlOfWater + "ml of water.";
     }
 }

@@ -1,4 +1,6 @@
-package org.sergedb.oop.inheritance.coffee;
+package org.sergedb.oop.inheritance.drinks;
+
+import org.sergedb.oop.inheritance.utils.Intensity;
 
 public class Coffee {
 
@@ -12,5 +14,10 @@ public class Coffee {
 
     public Coffee() {
         this("Espresso", Intensity.STRONG);
+    }
+
+    public String coffeeDetails() {
+        return "Making your " + coffeeName + ".\n"
+        + "Setting Intensity to " + coffeIntensity + ".";
     }
 }

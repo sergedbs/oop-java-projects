@@ -1,4 +1,6 @@
-package org.sergedb.oop.inheritance.coffee;
+package org.sergedb.oop.inheritance.drinks;
+
+import org.sergedb.oop.inheritance.utils.Intensity;
 
 public class PumpkinSpiceLatte extends Cappuccino {
     protected int mgOfPumpkinSpice;
@@ -10,5 +12,9 @@ public class PumpkinSpiceLatte extends Cappuccino {
 
     public PumpkinSpiceLatte() {
         this(Intensity.LIGHT, 250, 25);
+    }
+
+    public String coffeeDetails() {
+        return super.coffeeDetails() + "\nAdding " + mgOfPumpkinSpice + "mg of pumpkin spice.";
     }
 }
