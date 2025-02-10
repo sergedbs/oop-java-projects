@@ -3,7 +3,7 @@ package org.sergedb.oop.inheritance.drinks;
 import org.sergedb.oop.inheritance.utils.Intensity;
 import org.sergedb.oop.inheritance.utils.SyrupType;
 
-class SyrupCappuccino extends Cappuccino {
+public class SyrupCappuccino extends Cappuccino {
     protected SyrupType syrup;
 
     public SyrupCappuccino(Intensity intensity, int milk, SyrupType syrupType) {
@@ -11,11 +11,7 @@ class SyrupCappuccino extends Cappuccino {
         this.syrup = syrupType;
     }
 
-    public SyrupCappuccino(SyrupType syrupType) {
-        this(Intensity.NORMAL, 150, syrupType);
-    }
-
-    public String coffeeDetails() {
-        return super.coffeeDetails() + "\nAdding " + syrup + " syrup.";
+    public String toString() {
+        return super.toString() + "\nAdding " + syrup + " syrup.";
     }
 }

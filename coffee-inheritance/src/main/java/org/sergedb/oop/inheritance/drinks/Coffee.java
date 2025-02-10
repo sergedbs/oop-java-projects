@@ -12,11 +12,11 @@ public class Coffee {
         this.coffeIntensity = intensity;
     }
 
-    public Coffee() {
-        this("Espresso", Intensity.STRONG);
+    public Coffee(Intensity intensity) {
+        this("Espresso", intensity);
     }
 
-    public String coffeeDetails() {
+    public String toString() {
         return "Making your " + coffeeName + ".\n"
         + "Setting Intensity to " + coffeIntensity + ".";
     }

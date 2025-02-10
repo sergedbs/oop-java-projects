@@ -10,11 +10,7 @@ public class PumpkinSpiceLatte extends Cappuccino {
         this.mgOfPumpkinSpice = pumpkinSpice;
     }
 
-    public PumpkinSpiceLatte() {
-        this(Intensity.LIGHT, 250, 25);
-    }
-
-    public String coffeeDetails() {
-        return super.coffeeDetails() + "\nAdding " + mgOfPumpkinSpice + "mg of pumpkin spice.";
+    public String toString() {
+        return super.toString() + "\nAdding " + mgOfPumpkinSpice + "mg of pumpkin spice.";
     }
 }

@@ -12,11 +12,11 @@ public class Cappuccino extends Coffee{
         this.mlOfMilk = milk;
     }
 
-    public Cappuccino() {
-        this("Cappuccino", Intensity.NORMAL, 150);
+    public Cappuccino(Intensity intensity, int milk) {
+        this("Cappuccino", intensity, milk);
     }
 
-    public String coffeeDetails() {
-        return super.coffeeDetails() + "\nAdding " + mlOfMilk + "ml of milk.";
+    public String toString() {
+        return super.toString() + "\nAdding " + mlOfMilk + "ml of milk.";
     }
 }
