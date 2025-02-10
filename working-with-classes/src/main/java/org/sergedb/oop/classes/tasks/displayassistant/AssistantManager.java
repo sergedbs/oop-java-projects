@@ -72,10 +72,14 @@ public class AssistantManager {
 
     public void compareDisplays() {
         DisplayComparator displayComparator = new DisplayComparator();
-        for (int i = 0; i < assistant.getAssignedDisplays().size() - 1; i++) {
-            Display currentDisplay = assistant.getAssignedDisplays().get(i);
-            Display nextDisplay = assistant.getAssignedDisplays().get(i + 1);
-            System.out.println(displayComparator.compareTwoDisplays(currentDisplay, nextDisplay));
+        if (assistant.getAssignedDisplays().size() < 2) {
+            System.out.println(assistantName + ": Oh no! You need to select at least 2 displays to compare.");
+        } else {
+            for (int i = 0; i < assistant.getAssignedDisplays().size() - 1; i++) {
+                Display currentDisplay = assistant.getAssignedDisplays().get(i);
+                Display nextDisplay = assistant.getAssignedDisplays().get(i + 1);
+                System.out.println(displayComparator.compareTwoDisplays(currentDisplay, nextDisplay));
+            }
         }
     }
 
