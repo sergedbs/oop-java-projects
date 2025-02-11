@@ -16,9 +16,7 @@
     </modules>
 
     <dependencies>
-
     </dependencies>
-
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
