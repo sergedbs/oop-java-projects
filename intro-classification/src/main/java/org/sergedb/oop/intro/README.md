@@ -7,7 +7,7 @@ A project that classifies individuals into different fictional universes based o
 - `src/main/resources/papers_please/`: Contains input and output JSON files.
 
 ## Key Classes
-- `Main`: The entry point of the application.
+- `org.sergedb.oop.inheritance.Main`: The entry point of the application.
 - `Classifier`: Classifies individuals into different universes.
 - `Individual`: Represents an individual to be classified.
 - `Universe`: Enum representing different fictional universes.
