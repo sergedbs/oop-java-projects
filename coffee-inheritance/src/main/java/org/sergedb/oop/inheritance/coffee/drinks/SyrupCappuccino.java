@@ -1,7 +1,7 @@
-package org.sergedb.oop.inheritance.drinks;
+package org.sergedb.oop.inheritance.coffee.drinks;
 
-import org.sergedb.oop.inheritance.utils.Intensity;
-import org.sergedb.oop.inheritance.utils.SyrupType;
+import org.sergedb.oop.inheritance.coffee.Intensity;
+import org.sergedb.oop.inheritance.coffee.SyrupType;
 
 public class SyrupCappuccino extends Cappuccino {
     protected SyrupType syrup;

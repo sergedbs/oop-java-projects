@@ -1,6 +1,6 @@
-package org.sergedb.oop.inheritance.drinks;
+package org.sergedb.oop.inheritance.coffee.drinks;
 
-import org.sergedb.oop.inheritance.utils.Intensity;
+import org.sergedb.oop.inheritance.coffee.Intensity;
 
 public class Americano extends Coffee{
     protected int mlOfWater;
