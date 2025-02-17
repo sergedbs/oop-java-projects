@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/coffee-inheritance/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/coffee-inheritance/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/intro-classification/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/intro-classification/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/01-intro-classification/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/01-intro-classification/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/02-working-with-classes/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/02-working-with-classes/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/03-introducing-inheritance/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/03-introducing-inheritance/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/04-abstraction-polymorphism/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/04-abstraction-polymorphism/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/projects/common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/working-with-classes/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/working-with-classes/src/main/resources" charset="UTF-8" />
   </component>
 </project>

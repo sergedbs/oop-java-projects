@@ -1,27 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Parent Project Info -->
     <groupId>org.sergedb.oop</groupId>
     <artifactId>oop-java-projects</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
+    <name>OOP Java Projects</name>
+    <description>Multi-module Maven project for Object-Oriented Programming Java projects</description>
+
     <modules>
-        <module>intro-classification</module>
-        <module>working-with-classes</module>
-        <module>coffee-inheritance</module>
+        <module>projects/01-intro-classification</module>
+        <module>projects/02-working-with-classes</module>
+        <module>projects/03-introducing-inheritance</module>
+        <module>projects/04-abstraction-polymorphism</module>
+
+
+        <module>projects/common</module>
     </modules>
 
-    <dependencies>
-    </dependencies>
-
+    <!-- Global Properties -->
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- Dependency Management for all submodules -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Jackson Databind for 01-intro-classification and 02-working-with-classes -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.18.0</version>
+            </dependency>
+
+            <!-- JLine for 03-introducing-inheritance -->
+            <dependency>
+                <groupId>org.jline</groupId>
+                <artifactId>jline</artifactId>
+                <version>3.25.1</version>
+            </dependency>
+
+            <!-- Common dependencies -->
+            <dependency>
+                <groupId>org.sergedb.oop</groupId>
+                <artifactId>common</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Compiler Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+
+                <!-- Maven JAR Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.4.2</version>
+                </plugin>
+
+                <!-- Maven Assembly Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
