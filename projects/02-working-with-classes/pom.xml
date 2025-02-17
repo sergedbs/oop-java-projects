@@ -8,6 +8,7 @@
         <groupId>org.sergedb.oop</groupId>
         <artifactId>oop-java-projects</artifactId>
         <version>1.0.0</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>02-working-with-classes</artifactId>

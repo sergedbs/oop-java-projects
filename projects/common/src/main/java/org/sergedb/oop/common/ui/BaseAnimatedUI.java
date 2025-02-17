@@ -28,14 +28,14 @@ public abstract class BaseAnimatedUI {
      * Animates text appearing character by character with multi-line support.
      */
     protected void animateText() {
-        String[] lines = text.split("\\n");
+        String[] lines = text.split("\n");
         int linesCount = lines.length;
         StringBuilder animatedText = new StringBuilder("\n");
         for (char c : text.toCharArray()) {
             if (!runningAnimation) return;
             animatedText.append(c);
-            for (int i = 0; i < linesCount; i++) terminal.writer().print("\\033[A");
-            terminal.writer().print("\r\\u001B[0m" + animatedText + " ");
+            for (int i = 0; i < linesCount; i++) terminal.writer().print("\033[A");
+            terminal.writer().print("\r\u001B[0m" + animatedText + " ");
             terminal.writer().flush();
             try { Thread.sleep(30); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         }

@@ -48,8 +48,7 @@ public class MenuNavigatorUI extends BaseAnimatedUI {
 
     private void renderMenu() {
         renderHeader();
-        for (int i = 0; i < options.size(); i++) {
-            terminal.writer().println((i == selectedIndex ? "> [32m" : "  ") + options.get(i) + "[0m");
+            for (int i = 0; i < options.size(); i++) {terminal.writer().println((i == selectedIndex ? "> \u001B[32m" : "  ") + options.get(i) + "\u001B[0m");
         }
         terminal.writer().flush();
     }

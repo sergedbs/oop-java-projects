@@ -8,6 +8,8 @@
         <groupId>org.sergedb.oop</groupId>
         <artifactId>oop-java-projects</artifactId>
         <version>1.0.0</version>
+        <relativePath>../../pom.xml</relativePath>
+
     </parent>
 
     <artifactId>03-introducing-inheritance</artifactId>
@@ -18,7 +20,54 @@
             <groupId>org.jline</groupId>
             <artifactId>jline</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.sergedb.oop</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
     </dependencies>
+
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.4.2</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>org.sergedb.oop.inheritance.Main</mainClass> <!-- Adjust this to your actual main class path -->
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.7.1</version>
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>org.sergedb.oop.inheritance.Main</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 
 
 </project>

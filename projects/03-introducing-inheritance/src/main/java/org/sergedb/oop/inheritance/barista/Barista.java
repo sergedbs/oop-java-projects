@@ -1,9 +1,8 @@
 package org.sergedb.oop.inheritance.barista;
 
-import org.sergedb.oop.inheritance.utils.ui.MenuSelector;
-import org.sergedb.oop.inheritance.utils.ui.DisplayInfo;
 import org.sergedb.oop.inheritance.coffee.Intensity;
 import org.sergedb.oop.inheritance.coffee.SyrupType;
+import org.sergedb.oop.common.ui.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +26,7 @@ public class Barista {
      * @throws IOException If an issue occurs while reading input.
      */
     private int showMenuOptions(String prompt, List<String> options) throws IOException {
-        MenuSelector menu = new MenuSelector(prompt, options);
+        MenuNavigatorUI menu = new MenuNavigatorUI(prompt, options);
         return options.indexOf(menu.selectOption()) + 1;
     }
 
@@ -94,7 +93,7 @@ public class Barista {
      * @throws IOException If an issue occurs while displaying the message.
      */
     private void displayMessage(String message) throws IOException {
-        new DisplayInfo(message).waitForSpace();
+        new DisplayScreenUI(message).waitForSpace();
     }
 
     /**

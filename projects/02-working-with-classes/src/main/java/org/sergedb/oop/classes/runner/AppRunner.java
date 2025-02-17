@@ -14,9 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-/**
- * AppRunner class that manages and executes tasks using the common library utilities.
- */
 public class AppRunner {
 
     private static final String DEFAULT_FILE_PATH = "projects/02-working-with-classes/src/main/resources/input.txt";
