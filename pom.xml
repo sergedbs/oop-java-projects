@@ -16,7 +16,7 @@
         <module>projects/01-intro-classification</module>
         <module>projects/02-working-with-classes</module>
         <module>projects/03-introducing-inheritance</module>
-        <!-- <module>projects/04-abstraction-polymorphism</module> -->
+        <module>projects/04-abstraction-polymorphism</module>
 
         <module>projects/common</module>
     </modules>
