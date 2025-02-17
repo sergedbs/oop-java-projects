@@ -53,7 +53,7 @@ This laboratory is designed to:
 - **Common Library Utilities**:
     - `JsonUtils`: Reads and writes JSON files.
     - `FileUtils`: Manages file operations.
-    - `TexxtLoader`: Loads text from files.
+    - `TextLoader`: Loads text from files.
     - `ArgumentParser`: Parses command-line arguments.
 
 ## **Tasks Implemented**
