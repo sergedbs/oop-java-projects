@@ -1,6 +1,8 @@
 # **Multiverse Individual Classifier – Intro Into Classification**
 
-This project is inspired by *Papers, Please*, with a twist! It classifies individuals from different fictional universes that accidentally collided with our Moldavian Universe due to a coding mishap. Your mission: classify these individuals correctly and send them home!
+This project is inspired by *Papers, Please*, with a twist! It classifies individuals from different fictional universes that accidentally collided with our Moldavian Universe due to a coding mishap. The mission: classify these individuals correctly and send them home!
+
+---
 
 ## **Story Background**
 In the distant future, a Technical University of Moldova intern accidentally pushed untested code to the multiverse repository, merging our universe with several fictional ones:

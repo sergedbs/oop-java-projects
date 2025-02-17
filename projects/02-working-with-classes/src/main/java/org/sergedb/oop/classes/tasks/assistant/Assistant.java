@@ -1,4 +1,4 @@
-package org.sergedb.oop.classes.tasks.displayassistant;
+package org.sergedb.oop.classes.tasks.assistant;
 
 import org.sergedb.oop.classes.tasks.display.Display;
 

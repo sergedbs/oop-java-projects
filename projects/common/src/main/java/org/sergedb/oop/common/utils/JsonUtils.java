@@ -37,7 +37,7 @@ public class JsonUtils {
      * @param type class type of the objects to map.
      * @return list of objects of the specified type.
      */
-    public static <T> List<T> readFromJson(String filePath, Class<T> type) {
+    public static <T> List<T> readFromJson(String filePath, Class<T> type, String dataKey) {
         List<T> result = new ArrayList<>();
         if (!FileUtils.fileExists(filePath) || FileUtils.isFileEmpty(filePath)) {
             System.err.println("File not found or is empty: " + filePath);
@@ -45,7 +45,7 @@ public class JsonUtils {
         }
         try {
             JsonNode rootNode = objectMapper.readTree(new File(filePath));
-            JsonNode dataNode = rootNode.get("data");
+            JsonNode dataNode = (dataKey != null) ? rootNode.get(dataKey) : rootNode;
             if (dataNode != null && dataNode.isArray()) {
                 for (JsonNode node : dataNode) {
                     result.add(objectMapper.treeToValue(node, type));

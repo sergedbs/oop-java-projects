@@ -16,7 +16,7 @@ public class Classifier {
     }
 
     public void classifyFromJson(String inputFilePath) {
-        List<Individual> individuals = JsonUtils.readFromJson(inputFilePath, Individual.class);
+        List<Individual> individuals = JsonUtils.readFromJson(inputFilePath, Individual.class, "data");
         classifier.classify(individuals, ClassificationRules::determineUniverse);
     }
 

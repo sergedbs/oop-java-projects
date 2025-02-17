@@ -18,11 +18,9 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
-
-            <dependency>
-                <groupId>org.sergedb.oop</groupId>
-                <artifactId>common</artifactId>
-                <version>1.0.0</version>
-            </dependency>
+        <dependency>
+            <groupId>org.sergedb.oop</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
     </dependencies>
 </project>
