@@ -9,6 +9,7 @@ public class DisplayScreenUI extends BaseAnimatedUI {
 
     /**
      * Constructs a DisplayInfo instance with a given message.
+     *
      * @param message The message to display.
      * @throws IOException If terminal initialization fails.
      */
@@ -18,6 +19,7 @@ public class DisplayScreenUI extends BaseAnimatedUI {
 
     /**
      * Displays the animated message and waits for the user to press SPACE to continue.
+     *
      * @throws IOException If an issue occurs reading input.
      */
     public void waitForSpace() throws IOException {

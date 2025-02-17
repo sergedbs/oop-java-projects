@@ -18,6 +18,6 @@ public class Coffee {
 
     public String toString() {
         return "Making your " + coffeeName + ".\n"
-        + "Setting Intensity to " + coffeIntensity + ".";
+                + "Setting Intensity to " + coffeIntensity + ".";
     }
 }

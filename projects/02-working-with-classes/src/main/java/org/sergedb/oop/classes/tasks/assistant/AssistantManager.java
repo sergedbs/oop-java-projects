@@ -3,7 +3,9 @@ package org.sergedb.oop.classes.tasks.assistant;
 import org.sergedb.oop.classes.tasks.display.Display;
 import org.sergedb.oop.classes.tasks.display.DisplayComparator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class AssistantManager {
     private final List<Display> displayList;
@@ -40,9 +42,9 @@ public class AssistantManager {
     public void assignDisplays(List<Integer> ids) {
         for (Integer id : ids) {
             Display display = displayList.stream()
-                                         .filter(d -> d.id() == id)
-                                         .findFirst()
-                                         .orElse(null);
+                    .filter(d -> d.id() == id)
+                    .findFirst()
+                    .orElse(null);
             if (display == null) {
                 System.out.println(assistantName + ": Oh no! We do NOT have this display (ID: " + id + ") in stock");
             } else if (assistant.getAssignedDisplays().contains(display)) {
@@ -56,14 +58,14 @@ public class AssistantManager {
 
     public void buyDisplay(int id) {
         Display display = displayList.stream()
-                                     .filter(d -> d.id() == id)
-                                     .findFirst()
-                                     .orElse(null);
+                .filter(d -> d.id() == id)
+                .findFirst()
+                .orElse(null);
         if (display == null || !assistant.getAssignedDisplays().contains(display)) {
             System.out.println(assistantName + ": Oh no! This display (ID: " + id + ") does not exist or is not added to your cart.");
         } else {
             if (assistant.removeDisplay(display)) {
-                System.out.println("Great choice! You bought a shiny, brand new" + display.model() +  " (ID: " + id + "). Enjoy it!");
+                System.out.println("Great choice! You bought a shiny, brand new" + display.model() + " (ID: " + id + "). Enjoy it!");
             } else {
                 System.out.println("Oh no! Something went wrong. Please try again.");
             }

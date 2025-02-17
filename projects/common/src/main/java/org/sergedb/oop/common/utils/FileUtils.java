@@ -1,30 +1,35 @@
 package org.sergedb.oop.common.utils;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Utility class for common file operations such as checking existence, emptiness, and path handling.
  */
 public class FileUtils {
 
-    private FileUtils() { }
+    private FileUtils() {
+    }
 
     /**
      * Checks if the specified file exists.
+     *
      * @param filePath Path to the file.
      * @return true if the file exists, false otherwise.
      */
     public static boolean fileExists(String filePath) {
         Path path = Paths.get(filePath);
-        return Files.exists(path);
+        return !Files.exists(path);
     }
 
     /**
      * Checks if the specified file is empty.
+     *
      * @param filePath Path to the file.
      * @return true if the file is empty or an error occurs, false otherwise.
      */
@@ -40,6 +45,7 @@ public class FileUtils {
 
     /**
      * Gets the file name from the provided file path.
+     *
      * @param filePath Path to the file.
      * @return File name as a string.
      */
@@ -50,7 +56,8 @@ public class FileUtils {
 
     /**
      * Gets the file path from provided arguments or defaults to a specified path.
-     * @param args List of arguments.
+     *
+     * @param args        List of arguments.
      * @param defaultPath Default path if no argument is provided.
      * @return File path as a string.
      */
@@ -64,6 +71,7 @@ public class FileUtils {
 
     /**
      * Creates directories if they do not exist.
+     *
      * @param dirPath Path to the directory.
      */
     public static void createDirectoriesIfNotExist(String dirPath) {
@@ -76,4 +84,17 @@ public class FileUtils {
             System.err.println("Error creating directories: " + e.getMessage());
         }
     }
+
+    public static List<Path> getFilesFromDirectory(String dirPath, String extension) {
+        List<Path> jsonFiles = new ArrayList<>();
+        try (Stream<Path> paths = Files.walk(Paths.get(dirPath))) {
+            paths.filter(Files::isRegularFile)
+                    .filter(path -> path.toString().endsWith(extension))
+                    .forEach(jsonFiles::add);
+        } catch (IOException e) {
+            System.err.println("Error reading files from directory: " + e.getMessage());
+        }
+        return jsonFiles;
+    }
+
 }

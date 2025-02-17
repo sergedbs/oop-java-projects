@@ -9,6 +9,7 @@ public class TextInputUI extends BaseAnimatedUI {
 
     /**
      * Constructs a UserTextInput with a given animated message.
+     *
      * @param message The message to display before user input.
      * @throws IOException If terminal initialization fails.
      */
@@ -18,6 +19,7 @@ public class TextInputUI extends BaseAnimatedUI {
 
     /**
      * Displays the animated message and waits for user input.
+     *
      * @return The user input as a trimmed string.
      * @throws IOException If an issue occurs reading input.
      */

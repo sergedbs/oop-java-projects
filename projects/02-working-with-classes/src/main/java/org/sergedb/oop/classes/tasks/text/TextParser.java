@@ -14,13 +14,13 @@ public class TextParser {
     public TextData parseText(String fileName, String content) {
         String text = content.replaceAll(REGEX_URL, "");
         return new TextData(
-            fileName,
+                fileName,
                 countWords(text),
-            countVowels(text),
-            countConsonants(text),
-            countLetters(text),
-            countSentences(text),
-            findLongestWord(text)
+                countVowels(text),
+                countConsonants(text),
+                countLetters(text),
+                countSentences(text),
+                findLongestWord(text)
         );
     }
 
@@ -47,7 +47,7 @@ public class TextParser {
     // This approach (according to some "sources") should be more efficient (but idk honestly).
     private String findLongestWord(String text) {
         return Arrays.stream(text.split("\\s+"))
-                     .max(Comparator.comparingInt(String::length))
-                     .orElse("");
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
     }
 }

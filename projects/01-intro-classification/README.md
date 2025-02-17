@@ -1,11 +1,16 @@
 # **Multiverse Individual Classifier – Intro Into Classification**
 
-This project is inspired by *Papers, Please*, with a twist! It classifies individuals from different fictional universes that accidentally collided with our Moldavian Universe due to a coding mishap. The mission: classify these individuals correctly and send them home!
+This project is inspired by *Papers, Please*, with a twist! It classifies individuals from different fictional universes
+that accidentally collided with our Moldavian Universe due to a coding mishap. The mission: classify these individuals
+correctly and send them home!
 
 ---
 
 ## **Story Background**
-In the distant future, a Technical University of Moldova intern accidentally pushed untested code to the multiverse repository, merging our universe with several fictional ones:
+
+In the distant future, a Technical University of Moldova intern accidentally pushed untested code to the multiverse
+repository, merging our universe with several fictional ones:
+
 - **Star Wars**
 - **Marvel**
 - **The Hitchhiker’s Guide to the Galaxy**
@@ -13,8 +18,8 @@ In the distant future, a Technical University of Moldova intern accidentally pus
 
 This classification system helps these characters find their way back to their respective universes!
 
-
 ## **Project Structure**
+
 ```
 01-intro-classification
 │
@@ -34,8 +39,10 @@ This classification system helps these characters find their way back to their r
 ```
 
 ## **How It Works**
+
 - **Input:** `input.json` contains individuals with attributes like `planet`, `age`, `traits`, etc.
-- **Classification Logic:** `ClassificationRules` checks attributes and classifies each individual into one of the four universes.
+- **Classification Logic:** `ClassificationRules` checks attributes and classifies each individual into one of the four
+  universes.
 - **Output:** The classified individuals are written into separate JSON files for each universe in the `output` folder.
 
 ## **Core Components**
@@ -48,15 +55,19 @@ This classification system helps these characters find their way back to their r
 - **`Individual` and `Universe`**: Models representing individuals and universes.
 
 ## **Classification Logic**
+
 - **Star Wars**: Kashyyyk (Wookiees) and Endor (Ewoks).
 - **Marvel**: Asgardians.
 - **Hitchhiker’s**: Betelgeusians and Vogons.
 - **Lord of the Rings**: Elves and Dwarves.
 
-*If any attribute is missing (e.g., planet), the system tries all classification rules until a match is found. All the classification rule can be found [HERE](classification.md).*
+*If any attribute is missing (e.g., planet), the system tries all classification rules until a match is found. All the
+classification rule can be found [HERE](classification.md).*
 
 ## **Output Example**
+
 Each universe will have its JSON file in the `output` folder:
+
 - `STAR_WARS.json`
 - `MARVEL.json`
 - `HITCHHIKERS.json`

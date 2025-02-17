@@ -2,6 +2,7 @@ package org.sergedb.oop.classification.classification;
 
 import org.sergedb.oop.classification.models.Individual;
 import org.sergedb.oop.classification.models.Universe;
+
 import java.util.Set;
 
 public class ClassificationRules {
@@ -20,7 +21,7 @@ public class ClassificationRules {
 
     private static boolean isStarWars(Individual individual) {
         return matches(individual, "KASHYYYK", false, 400, Set.of("HAIRY", "TALL")) ||
-               matches(individual, "ENDOR", false, 60, Set.of("SHORT", "HAIRY"));
+                matches(individual, "ENDOR", false, 60, Set.of("SHORT", "HAIRY"));
     }
 
     private static boolean isMarvel(Individual individual) {
@@ -29,17 +30,19 @@ public class ClassificationRules {
 
     private static boolean isHitchhikers(Individual individual) {
         return matches(individual, "BETELGEUSE", true, 100, Set.of("EXTRA_ARMS", "EXTRA_HEAD")) ||
-               matches(individual, "VOGSPHERE", false, 200, Set.of("GREEN", "BULKY"));
+                matches(individual, "VOGSPHERE", false, 200, Set.of("GREEN", "BULKY"));
     }
 
     private static boolean isLordOfTheRings(Individual individual) {
         return matches(individual, "EARTH", true, null, Set.of("BLONDE", "POINTY_EARS")) ||
-               matches(individual, "EARTH", true, 200, Set.of("SHORT", "BULKY"));
+                matches(individual, "EARTH", true, 200, Set.of("SHORT", "BULKY"));
     }
 
     private static boolean matches(Individual individual, String planet, Boolean isHumanoid, Integer maxAge, Set<String> traits) {
-        if (planet != null && individual.planet() != null && !individual.planet().equalsIgnoreCase(planet)) return false;
-        if (isHumanoid != null && individual.isHumanoid() != null && !individual.isHumanoid().equals(isHumanoid)) return false;
+        if (planet != null && individual.planet() != null && !individual.planet().equalsIgnoreCase(planet))
+            return false;
+        if (isHumanoid != null && individual.isHumanoid() != null && !individual.isHumanoid().equals(isHumanoid))
+            return false;
         if (maxAge != null && individual.age() != null && individual.age() > maxAge) return false;
         if (traits != null && individual.traits() != null) {
             for (String trait : traits) {

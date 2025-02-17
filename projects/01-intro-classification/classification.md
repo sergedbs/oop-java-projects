@@ -1,20 +1,23 @@
 # Classification values
 
-**isHuman**: 
-- true, 
-- false 
+**isHuman**:
 
-**planets**: 
-- Earth, 
-- Asgard, 
-- Betelgeuse, 
-- Vogsphere, 
-- Kashyyyk, 
+- true,
+- false
+
+**planets**:
+
+- Earth,
+- Asgard,
+- Betelgeuse,
+- Vogsphere,
+- Kashyyyk,
 - Endor
 
 **age**: characterized by ranges
 
 **traits:**
+
 - HAIRY,
 - TALL,
 - SHORT,
@@ -28,6 +31,7 @@
 # Classification by Universe
 
 ## Star Wars Universe
+
 (Wookie)
 
 ```
@@ -47,6 +51,7 @@ traits: SHORT, HAIRY
 ```
 
 ## Marvel Universe
+
 (Asgardian)
 
 ```
@@ -59,6 +64,7 @@ traits: BLONDE, TALL
 ## Hitchhiker's Universe
 
 (Betelgeusian)
+
 ```
 isHumanoid: true
 planet: BETELGEUSE
@@ -67,6 +73,7 @@ traits: EXTRA_ARMS, EXTRA_HEAD
 ```
 
 (Vogons)
+
 ```
 isHumanoid: false
 planet: Vogsphere
@@ -77,6 +84,7 @@ traits: GREEN, BULKY
 # Lord of the rings
 
 (Elf)
+
 ```
 isHumanoid: true
 planet: Earth
@@ -85,6 +93,7 @@ traits: BLONDE, POINTY_EARS
 ```
 
 (Dwarf)
+
 ```
 isHumanoid: true
 planet: Earth

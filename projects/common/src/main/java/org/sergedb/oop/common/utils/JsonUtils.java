@@ -3,6 +3,7 @@ package org.sergedb.oop.common.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,10 +20,12 @@ public class JsonUtils {
 
     private static final ObjectMapper objectMapper = createObjectMapper();
 
-    private JsonUtils() { }
+    private JsonUtils() {
+    }
 
     /**
      * Creates and configures an ObjectMapper instance with indentation enabled.
+     *
      * @return configured ObjectMapper instance.
      */
     private static ObjectMapper createObjectMapper() {
@@ -33,22 +36,28 @@ public class JsonUtils {
 
     /**
      * Reads a JSON file from a specified path, extracting objects from the 'data' key.
+     *
      * @param filePath path to the JSON file.
-     * @param type class type of the objects to map.
+     * @param type     class type of the objects to map.
      * @return list of objects of the specified type.
      */
     public static <T> List<T> readFromJson(String filePath, Class<T> type, String dataKey) {
         List<T> result = new ArrayList<>();
-        if (!FileUtils.fileExists(filePath) || FileUtils.isFileEmpty(filePath)) {
+        if (FileUtils.fileExists(filePath) || FileUtils.isFileEmpty(filePath)) {
             System.err.println("File not found or is empty: " + filePath);
             return result;
         }
         try {
             JsonNode rootNode = objectMapper.readTree(new File(filePath));
             JsonNode dataNode = (dataKey != null) ? rootNode.get(dataKey) : rootNode;
-            if (dataNode != null && dataNode.isArray()) {
-                for (JsonNode node : dataNode) {
-                    result.add(objectMapper.treeToValue(node, type));
+
+            if (dataNode != null) {
+                if (dataNode.isArray()) {
+                    for (JsonNode node : dataNode) {
+                        result.add(objectMapper.treeToValue(node, type));
+                    }
+                } else {
+                    result.add(objectMapper.treeToValue(dataNode, type));
                 }
             }
         } catch (IOException e) {
@@ -59,8 +68,9 @@ public class JsonUtils {
 
     /**
      * Writes classified data to individual JSON files in the specified directory.
+     *
      * @param classifiedData map of keys to lists of objects.
-     * @param outputDirPath path to the output directory.
+     * @param outputDirPath  path to the output directory.
      */
     public static <T> void writeClassifiedToJson(Map<?, List<T>> classifiedData, String outputDirPath) {
         try {
@@ -76,6 +86,7 @@ public class JsonUtils {
 
     /**
      * Provides the shared ObjectMapper instance.
+     *
      * @return ObjectMapper instance.
      */
     public static ObjectMapper getObjectMapper() {

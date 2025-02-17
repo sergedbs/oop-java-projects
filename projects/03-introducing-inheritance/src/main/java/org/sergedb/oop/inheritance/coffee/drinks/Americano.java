@@ -2,7 +2,7 @@ package org.sergedb.oop.inheritance.coffee.drinks;
 
 import org.sergedb.oop.inheritance.coffee.Intensity;
 
-public class Americano extends Coffee{
+public class Americano extends Coffee {
     protected int mlOfWater;
     protected String name;
 

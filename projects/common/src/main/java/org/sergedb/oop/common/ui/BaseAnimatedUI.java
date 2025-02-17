@@ -3,6 +3,7 @@ package org.sergedb.oop.common.ui;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 import org.jline.utils.InfoCmp;
+
 import java.io.IOException;
 
 /**
@@ -16,6 +17,7 @@ public abstract class BaseAnimatedUI {
 
     /**
      * Initializes the terminal and text for the UI component.
+     *
      * @param text The text to display and animate.
      * @throws IOException If terminal initialization fails.
      */
@@ -37,7 +39,11 @@ public abstract class BaseAnimatedUI {
             for (int i = 0; i < linesCount; i++) terminal.writer().print("\033[A");
             terminal.writer().print("\r\u001B[0m" + animatedText + " ");
             terminal.writer().flush();
-            try { Thread.sleep(30); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
         terminal.writer().println();
     }
@@ -62,6 +68,10 @@ public abstract class BaseAnimatedUI {
      * Closes the terminal.
      */
     protected void closeTerminal() {
-        try { terminal.close(); } catch (IOException e) { e.printStackTrace(); }
+        try {
+            terminal.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,7 +1,6 @@
 package org.sergedb.oop.classification;
 
 import org.sergedb.oop.classification.classification.Classifier;
-import java.io.IOException;
 
 public class Main {
     private static final String INPUT_FILE_PATH = "projects/01-intro-classification/src/main/resources/input.json";

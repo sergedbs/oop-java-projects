@@ -1,8 +1,8 @@
 package org.sergedb.oop.classes.runner;
 
-import org.sergedb.oop.classes.tasks.display.DisplayComparator;
-import org.sergedb.oop.classes.tasks.display.Display;
 import org.sergedb.oop.classes.tasks.assistant.AssistantManager;
+import org.sergedb.oop.classes.tasks.display.Display;
+import org.sergedb.oop.classes.tasks.display.DisplayComparator;
 import org.sergedb.oop.classes.tasks.text.TextData;
 import org.sergedb.oop.classes.tasks.text.TextParser;
 import org.sergedb.oop.common.utils.ArgumentParser;

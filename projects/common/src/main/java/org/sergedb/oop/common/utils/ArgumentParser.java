@@ -1,6 +1,9 @@
 package org.sergedb.oop.common.utils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Utility class for parsing command-line arguments into a structured map.
@@ -30,8 +33,8 @@ public class ArgumentParser {
     /**
      * Retrieves a specific argument's value from the parsed arguments map, with an option for default values.
      *
-     * @param parsedArgs The map of parsed arguments.
-     * @param flag The flag to retrieve values for.
+     * @param parsedArgs    The map of parsed arguments.
+     * @param flag          The flag to retrieve values for.
      * @param defaultValues Default values to return if the flag is not present.
      * @return List of values for the provided flag or default values if flag is absent.
      */

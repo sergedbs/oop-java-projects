@@ -1,8 +1,8 @@
 package org.sergedb.oop.inheritance.barista;
 
-import org.sergedb.oop.inheritance.coffee.drinks.*;
 import org.sergedb.oop.inheritance.coffee.Intensity;
 import org.sergedb.oop.inheritance.coffee.SyrupType;
+import org.sergedb.oop.inheritance.coffee.drinks.*;
 
 public class CoffeeMaker {
 

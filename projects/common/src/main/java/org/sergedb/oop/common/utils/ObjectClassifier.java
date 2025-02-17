@@ -11,6 +11,7 @@ public class ObjectClassifier<T, C> {
 
     /**
      * Initializes the classifier with categories.
+     *
      * @param categories Collection of categories.
      */
     public ObjectClassifier(Collection<C> categories) {
@@ -22,7 +23,8 @@ public class ObjectClassifier<T, C> {
 
     /**
      * Classifies a list of objects into categories using the provided classification function.
-     * @param objects List of objects to classify.
+     *
+     * @param objects            List of objects to classify.
      * @param classifierFunction Function that maps objects to categories.
      */
     public void classify(List<T> objects, java.util.function.Function<T, C> classifierFunction) {
@@ -34,6 +36,7 @@ public class ObjectClassifier<T, C> {
 
     /**
      * Retrieves the classification map with objects grouped by categories.
+     *
      * @return Map of categories to lists of objects.
      */
     public Map<C, List<T>> getClassificationMap() {

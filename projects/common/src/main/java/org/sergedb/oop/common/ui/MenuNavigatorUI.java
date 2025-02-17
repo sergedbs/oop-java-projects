@@ -12,8 +12,9 @@ public class MenuNavigatorUI extends BaseAnimatedUI {
 
     /**
      * Constructs a MenuSelector with given title text and options.
+     *
      * @param menuText The title text.
-     * @param options The list of menu options.
+     * @param options  The list of menu options.
      * @throws IOException If an issue occurs initializing the terminal.
      */
     public MenuNavigatorUI(String menuText, List<String> options) throws IOException {
@@ -23,6 +24,7 @@ public class MenuNavigatorUI extends BaseAnimatedUI {
 
     /**
      * Displays the menu and allows user selection using arrow keys.
+     *
      * @return The selected menu option.
      * @throws IOException If an issue occurs reading input.
      */
@@ -48,7 +50,8 @@ public class MenuNavigatorUI extends BaseAnimatedUI {
 
     private void renderMenu() {
         renderHeader();
-            for (int i = 0; i < options.size(); i++) {terminal.writer().println((i == selectedIndex ? "> \u001B[32m" : "  ") + options.get(i) + "\u001B[0m");
+        for (int i = 0; i < options.size(); i++) {
+            terminal.writer().println((i == selectedIndex ? "> \u001B[32m" : "  ") + options.get(i) + "\u001B[0m");
         }
         terminal.writer().flush();
     }
@@ -64,8 +67,19 @@ public class MenuNavigatorUI extends BaseAnimatedUI {
         }
     }
 
-    private void moveSelectionUp() { selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : options.size() - 1; }
-    private void moveSelectionDown() { selectedIndex = (selectedIndex < options.size() - 1) ? selectedIndex + 1 : 0; }
-    private boolean isEscapeSequence(int key) { return key == 27; }
-    private boolean isEnterKey(int key) { return key == 10 || key == 13; }
+    private void moveSelectionUp() {
+        selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : options.size() - 1;
+    }
+
+    private void moveSelectionDown() {
+        selectedIndex = (selectedIndex < options.size() - 1) ? selectedIndex + 1 : 0;
+    }
+
+    private boolean isEscapeSequence(int key) {
+        return key == 27;
+    }
+
+    private boolean isEnterKey(int key) {
+        return key == 10 || key == 13;
+    }
 }

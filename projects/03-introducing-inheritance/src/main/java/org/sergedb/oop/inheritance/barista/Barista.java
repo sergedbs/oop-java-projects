@@ -1,8 +1,9 @@
 package org.sergedb.oop.inheritance.barista;
 
+import org.sergedb.oop.common.ui.DisplayScreenUI;
+import org.sergedb.oop.common.ui.MenuNavigatorUI;
 import org.sergedb.oop.inheritance.coffee.Intensity;
 import org.sergedb.oop.inheritance.coffee.SyrupType;
-import org.sergedb.oop.common.ui.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Barista {
     /**
      * Displays a menu and returns the selected option index.
      *
-     * @param prompt The prompt text for the menu.
+     * @param prompt  The prompt text for the menu.
      * @param options The list of menu options.
      * @return The index of the selected option (1-based index).
      * @throws IOException If an issue occurs while reading input.
@@ -36,7 +37,7 @@ public class Barista {
     }
 
     public Intensity showIntensityOptions() throws IOException {
-        int choice = showMenuOptions("- What intensity would you like?", List.of( "Normal", "Decaf", "Double"));
+        int choice = showMenuOptions("- What intensity would you like?", List.of("Normal", "Decaf", "Double"));
         return switch (choice) {
             case 2 -> Intensity.DECAF;
             case 3 -> Intensity.DOUBLE;
@@ -122,7 +123,8 @@ public class Barista {
                     case 2 -> displayMessage(coffeeMaker.makeAmericano(intensity, water).toString());
                     case 3 -> displayMessage(coffeeMaker.makeCappuccino(intensity, milk).toString());
                     case 4 -> displayMessage(coffeeMaker.makeSyrupCappuccino(intensity, milk, syrup).toString());
-                    case 5 -> displayMessage(coffeeMaker.makePumpkinSpiceLatte(intensity, milk, pumpkinSpice).toString());
+                    case 5 ->
+                            displayMessage(coffeeMaker.makePumpkinSpiceLatte(intensity, milk, pumpkinSpice).toString());
                 }
 
                 displayMessage("- Your drink is ready! Enjoy!");

@@ -22,11 +22,11 @@ public class TextData {
     @Override
     public String toString() {
         return "File name: " + fileName + "\n" +
-               "Word count: " + wordCount + "\n" +
-               "Vowel count: " + vowelCount + "\n" +
-               "Consonant count: " + consonantCount + "\n" +
-               "Letters count: " + letterCount + "\n" +
-               "Sentence count: " + sentenceCount + "\n" +
-               "Longest word: " + longestWord;
+                "Word count: " + wordCount + "\n" +
+                "Vowel count: " + vowelCount + "\n" +
+                "Consonant count: " + consonantCount + "\n" +
+                "Letters count: " + letterCount + "\n" +
+                "Sentence count: " + sentenceCount + "\n" +
+                "Longest word: " + longestWord;
     }
 }
