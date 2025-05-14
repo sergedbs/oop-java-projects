@@ -21,5 +21,14 @@ public class CarStation {
     }
 
     public void serveCars() {
+        while (!queue.isEmpty()) {
+            Car car = queue.dequeue();
+
+            if (car.isDining()) {
+                diningService.serveDinner(car.id());
+            }
+
+            refuelingService.refuel(car.id());
+        }
     }
 }
