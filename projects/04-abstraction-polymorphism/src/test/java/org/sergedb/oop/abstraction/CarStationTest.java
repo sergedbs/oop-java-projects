@@ -72,5 +72,29 @@ public class CarStationTest {
         assertEquals(List.of("1", "2", "3"), refuel.getLog());
         assertTrue(queue.isEmpty());
     }
+
+    @Test
+    public void testServeEmptyQueue() {
+        Queue<Car> queue = new SimpleQueue<>();
+        CarStation station = new CarStation(queue, dinner, refuel);
+
+        station.serveCars();
+
+        assertTrue(dinner.getLog().isEmpty());
+        assertTrue(refuel.getLog().isEmpty());
+    }
+
+    @Test
+    public void testNoDiningCalled() {
+        Queue<Car> queue = new SimpleQueue<>();
+        queue.enqueue(new Car("4", "GAS", "PEOPLE", false, 15));
+
+        CarStation station = new CarStation(queue, dinner, refuel);
+        station.serveCars();
+
+        assertTrue(dinner.getLog().isEmpty());
+        assertEquals(List.of("4"), refuel.getLog());
+    }
+
 }
 

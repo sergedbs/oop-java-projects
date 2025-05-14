@@ -41,4 +41,3 @@ build/
 .DS_Store
 
 .venv/
-/projects/**/queue/
