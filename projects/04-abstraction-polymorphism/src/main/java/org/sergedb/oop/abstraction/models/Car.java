@@ -1,10 +1,5 @@
 package org.sergedb.oop.abstraction.models;
 
-public class Car {
-    private int id;
-    private String type;
-    private String passengers;
-    private boolean isDining;
-    private int consumption;
-}
+public record Car(String id, String type, String passengers, boolean isDining, int consumption) {}
+
 

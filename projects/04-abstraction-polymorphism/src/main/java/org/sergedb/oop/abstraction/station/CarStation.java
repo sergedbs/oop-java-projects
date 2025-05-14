@@ -5,12 +5,12 @@ import org.sergedb.oop.abstraction.queue.Queue;
 import org.sergedb.oop.abstraction.services.Dineable;
 import org.sergedb.oop.abstraction.services.Refuelable;
 
-public class CarServiceStation {
+public class CarStation {
     private final Queue<Car> queue;
     private final Dineable diningService;
     private final Refuelable refuelingService;
 
-    public CarServiceStation(Queue<Car> queue, Dineable diningService, Refuelable refuelingService) {
+    public CarStation(Queue<Car> queue, Dineable diningService, Refuelable refuelingService) {
         this.queue = queue;
         this.diningService = diningService;
         this.refuelingService = refuelingService;
