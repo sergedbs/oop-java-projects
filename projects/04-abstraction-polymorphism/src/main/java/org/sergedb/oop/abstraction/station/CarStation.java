@@ -2,8 +2,7 @@ package org.sergedb.oop.abstraction.station;
 
 import org.sergedb.oop.abstraction.models.Car;
 import org.sergedb.oop.abstraction.queue.Queue;
-import org.sergedb.oop.abstraction.services.Dineable;
-import org.sergedb.oop.abstraction.services.Refuelable;
+import org.sergedb.oop.abstraction.services.*;
 
 public class CarStation {
     private final Queue<Car> queue;
@@ -31,4 +30,17 @@ public class CarStation {
             refuelingService.refuel(car.id());
         }
     }
+
+    public boolean canServe(Car car) {
+        boolean fuelMatches =
+                (refuelingService instanceof GasStation && car.type().equals("GAS")) ||
+                        (refuelingService instanceof ElectricStation && car.type().equals("ELECTRIC"));
+
+        boolean passengerMatches =
+                (diningService instanceof PeopleDinner && car.passengers().equals("PEOPLE")) ||
+                        (diningService instanceof RobotDinner && car.passengers().equals("ROBOTS"));
+
+        return fuelMatches && passengerMatches;
+    }
+
 }

@@ -16,39 +16,13 @@ import static org.junit.Assert.assertTrue;
 
 public class CarStationTest {
 
-    private class MockRefuelable implements Refuelable {
-        private final List<String> log = new ArrayList<>();
-
-        @Override
-        public void refuel(String carId) {
-            log.add(carId);
-        }
-
-        public List<String> getLog() {
-            return log;
-        }
-    }
-
-    private class MockDineable implements Dineable {
-        private final List<String> log = new ArrayList<>();
-
-        @Override
-        public void serveDinner(String carId) {
-            log.add(carId);
-        }
-
-        public List<String> getLog() {
-            return log;
-        }
-    }
-
-    private MockDineable dinner;
-    private MockRefuelable refuel;
+    private AbstractDineable dinner;
+    private AbstractRefuelable refuel;
 
     @Before
     public void setUp() {
-        dinner = new MockDineable();
-        refuel = new MockRefuelable();
+        dinner = new PeopleDinner();
+        refuel = new GasStation();
     }
 
     @Test
@@ -57,8 +31,8 @@ public class CarStationTest {
         Queue<Car> queue = new SimpleQueue<>();
 
         Car c1 = new Car("1", "GAS", "PEOPLE", true, 40);
-        Car c2 = new Car("2", "ELECTRIC", "ROBOTS", false, 30);
-        Car c3 = new Car("3", "ELECTRIC", "PEOPLE", true, 20);
+        Car c2 = new Car("2", "GAS", "PEOPLE", false, 30);
+        Car c3 = new Car("3", "GAS", "PEOPLE", true, 20);
 
         queue.enqueue(c1);
         queue.enqueue(c2);
@@ -68,8 +42,12 @@ public class CarStationTest {
 
         station.serveCars();
 
-        assertEquals(List.of("1", "3"), dinner.getLog());
-        assertEquals(List.of("1", "2", "3"), refuel.getLog());
+        assertEquals(List.of("1", "3"), dinner.getServedCars());
+        assertEquals(2, dinner.getServedCount());
+
+        assertEquals(List.of("1", "2", "3"), refuel.getRefueledCars());
+        assertEquals(3, refuel.getRefueledCount());
+
         assertTrue(queue.isEmpty());
     }
 
@@ -80,8 +58,11 @@ public class CarStationTest {
 
         station.serveCars();
 
-        assertTrue(dinner.getLog().isEmpty());
-        assertTrue(refuel.getLog().isEmpty());
+        assertTrue(dinner.getServedCars().isEmpty());
+        assertEquals(0, dinner.getServedCount());
+
+        assertTrue(refuel.getRefueledCars().isEmpty());
+        assertEquals(0, refuel.getRefueledCount());
     }
 
     @Test
@@ -92,8 +73,8 @@ public class CarStationTest {
         CarStation station = new CarStation(queue, dinner, refuel);
         station.serveCars();
 
-        assertTrue(dinner.getLog().isEmpty());
-        assertEquals(List.of("4"), refuel.getLog());
+        assertTrue(dinner.getServedCars().isEmpty());
+        assertEquals(List.of("4"), refuel.getRefueledCars());
     }
 
 }

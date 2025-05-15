@@ -1,9 +1,8 @@
 package org.sergedb.oop.abstraction.services;
 
-public class PeopleDinner implements Dineable {
+public class PeopleDinner extends AbstractDineable {
 
-    @Override
-    public void serveDinner(String carId) {
-        System.out.println("Serving people in car " + carId + ". ");
+    public PeopleDinner() {
+        super("PEOPLE");
     }
 }
