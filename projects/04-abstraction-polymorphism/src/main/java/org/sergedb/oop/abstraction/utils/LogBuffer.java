@@ -26,7 +26,6 @@ public class LogBuffer {
 
         System.out.printf("\n[TICK #%d] New car(s) processed.\n", tick);
         messages.forEach(System.out::println);
-        System.out.println("\nServing Results:");
         messages.clear();
     }
 }

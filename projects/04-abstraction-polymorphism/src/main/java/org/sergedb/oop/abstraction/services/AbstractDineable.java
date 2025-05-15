@@ -17,7 +17,6 @@ public abstract class AbstractDineable implements Dineable {
     public void serveDinner(String carId) {
         count++;
         servedCars.add(carId);
-        System.out.println("Serving dinner to " + passengerType + " in car " + carId);
     }
 
     public int getServedCount() {

@@ -34,7 +34,7 @@ public class ScheduledCarReader implements Runnable {
             for (Car car : cars) {
                 try {
                     semaphore.addCar(car);
-                    logBuffer.logf("[READER] Car %s dispatched", car.id());
+                    logBuffer.logf("[READER] Car %s dispatched.", car.id());
                 } catch (Exception e) {
                     System.err.println("[READER] Failed to dispatch car: " + car.id() + " - " + e.getMessage());
                 }
@@ -42,10 +42,11 @@ public class ScheduledCarReader implements Runnable {
 
             try {
                 Files.delete(filePath);
-                logBuffer.logf("[READER] %s served.", filePath.getFileName());
             } catch (IOException e) {
                 System.err.println("[READER] Could not delete file: " + file + " - " + e.getMessage());
             }
+
+
         }
     }
 }

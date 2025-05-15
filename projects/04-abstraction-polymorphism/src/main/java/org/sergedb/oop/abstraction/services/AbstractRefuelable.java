@@ -17,7 +17,6 @@ public abstract class AbstractRefuelable implements Refuelable {
     public void refuel(String carId) {
         count++;
         refueledCars.add(carId);
-        System.out.println("Refueling " + fuelType + " car " + carId);
     }
 
     public int getRefueledCount() {

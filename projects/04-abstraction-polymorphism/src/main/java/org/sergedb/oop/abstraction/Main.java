@@ -25,10 +25,10 @@ public class Main {
         String queueDir = "/Users/sergiu/Projects/oop-java-projects/projects/04-abstraction-polymorphism/queue";
 
         List<CarStation> stations = new ArrayList<>();
-        stations.add(new CarStation(new SimpleQueue<>(), new PeopleDinner(), new GasStation()));      // GAS + PEOPLE
-        stations.add(new CarStation(new SimpleQueue<>(), new RobotDinner(), new GasStation()));       // GAS + ROBOTS
-        stations.add(new CarStation(new SimpleQueue<>(), new PeopleDinner(), new ElectricStation())); // ELECTRIC + PEOPLE
-        stations.add(new CarStation(new SimpleQueue<>(), new RobotDinner(), new ElectricStation()));  // ELECTRIC + ROBOTS
+        stations.add(new CarStation("PG", new SimpleQueue<>(), new PeopleDinner(), new GasStation()));      // GAS + PEOPLE
+        stations.add(new CarStation("RG", new SimpleQueue<>(), new RobotDinner(), new GasStation()));       // GAS + ROBOTS
+        stations.add(new CarStation("PE", new SimpleQueue<>(), new PeopleDinner(), new ElectricStation())); // ELECTRIC + PEOPLE
+        stations.add(new CarStation("RE", new SimpleQueue<>(), new RobotDinner(), new ElectricStation()));  // ELECTRIC + ROBOTS
 
         Semaphore semaphore = new Semaphore(stations);
 

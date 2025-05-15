@@ -16,7 +16,8 @@ public class ScheduledCarServer implements Runnable {
 
     @Override
     public void run() {
-        logBuffer.flush(tick++);
-        semaphore.serveAll();
+        tick++;
+        semaphore.serveAll(logBuffer);
+        logBuffer.flush(tick);
     }
 }
