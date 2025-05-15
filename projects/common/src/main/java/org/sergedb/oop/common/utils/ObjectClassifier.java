@@ -25,7 +25,7 @@ public class ObjectClassifier<T, C> {
      * Classifies a list of objects into categories using the provided classification function.
      *
      * @param objects            List of objects to classify.
-     * @param classifierFunction Function that maps objects to categories.
+     * @param classifierFunction Function that maps objects to categorize.
      */
     public void classify(List<T> objects, java.util.function.Function<T, C> classifierFunction) {
         for (T object : objects) {

@@ -16,24 +16,23 @@ import static org.junit.Assert.assertEquals;
 public class SemaphoreTest {
 
     private final List<CarStation> stations = new ArrayList<>();
+    private final List<AbstractRefuelable> refuelServices = new ArrayList<>();
+    private final List<AbstractDineable> dineServices = new ArrayList<>();
 
     @Before
     public void setupStations() {
         stations.clear();
 
-        createStation("GAS", "PEOPLE");
-        createStation("GAS", "ROBOTS");
-        createStation("ELECTRIC", "PEOPLE");
-        createStation("ELECTRIC", "ROBOTS");
+        createStation(new GasStation(), new PeopleDinner());
+        createStation(new GasStation(), new RobotDinner());
+        createStation(new ElectricStation(), new PeopleDinner());
+        createStation(new ElectricStation(), new RobotDinner());
     }
 
-    private void createStation(String fuel, String passengers) {
+    private void createStation(AbstractRefuelable refuel, AbstractDineable dine) {
         Queue<Car> queue = new SimpleQueue<>();
-
-        Dineable dine = passengers.equals("PEOPLE") ? new PeopleDinner() : new RobotDinner();
-        Refuelable refuel = fuel.equals("GAS") ? new GasStation() : new ElectricStation();
-
-
+        refuelServices.add(refuel);
+        dineServices.add(dine);
         stations.add(new CarStation(queue, dine, refuel));
     }
 
@@ -41,16 +40,32 @@ public class SemaphoreTest {
     public void testDispatchAndServe() {
         Semaphore dispatcher = new Semaphore(stations);
 
-        // Arrange: 4 cars
         List<Car> cars = List.of(
-                new Car("1", "GAS", "PEOPLE", true, 40),
-                new Car("2", "ELECTRIC", "ROBOTS", true, 25),
-                new Car("3", "GAS", "ROBOTS", false, 30),
-                new Car("4", "ELECTRIC", "PEOPLE", false, 35)
+                new Car("1", "GAS", "PEOPLE", true, 40),     // station 0
+                new Car("2", "GAS", "ROBOTS", false, 30),    // station 1
+                new Car("3", "ELECTRIC", "PEOPLE", false, 20), // station 2
+                new Car("4", "ELECTRIC", "ROBOTS", true, 35)   // station 3
         );
 
         for (Car car : cars) dispatcher.addCar(car);
 
         dispatcher.serveAll();
+
+        // Assert per station:
+        // Station 0: GAS + PEOPLE
+        assertEquals(List.of("1"), refuelServices.get(0).getRefueledCars());
+        assertEquals(List.of("1"), dineServices.get(0).getServedCars());
+
+        // Station 1: GAS + ROBOTS
+        assertEquals(List.of("2"), refuelServices.get(1).getRefueledCars());
+        assertEquals(List.of(), dineServices.get(1).getServedCars());
+
+        // Station 2: ELECTRIC + PEOPLE
+        assertEquals(List.of("3"), refuelServices.get(2).getRefueledCars());
+        assertEquals(List.of(), dineServices.get(2).getServedCars());
+
+        // Station 3: ELECTRIC + ROBOTS
+        assertEquals(List.of("4"), refuelServices.get(3).getRefueledCars());
+        assertEquals(List.of("4"), dineServices.get(3).getServedCars());
     }
 }

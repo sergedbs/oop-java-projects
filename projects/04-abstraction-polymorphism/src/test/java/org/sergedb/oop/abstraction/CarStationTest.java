@@ -8,7 +8,6 @@ import org.sergedb.oop.abstraction.queue.SimpleQueue;
 import org.sergedb.oop.abstraction.services.*;
 import org.sergedb.oop.abstraction.station.CarStation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
