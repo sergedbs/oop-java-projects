@@ -9,6 +9,7 @@ import org.sergedb.oop.abstraction.services.GasStation;
 import org.sergedb.oop.abstraction.services.PeopleDinner;
 import org.sergedb.oop.abstraction.services.RobotDinner;
 import org.sergedb.oop.abstraction.station.CarStation;
+import org.sergedb.oop.abstraction.utils.LogBuffer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
+
+        LogBuffer logBuffer = new LogBuffer();
 
         String queueDir = "/Users/sergiu/Projects/oop-java-projects/projects/04-abstraction-polymorphism/queue";
 
@@ -32,12 +35,12 @@ public class Main {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
         executor.scheduleAtFixedRate(
-                new ScheduledCarReader(queueDir, semaphore),
+                new ScheduledCarReader(queueDir, semaphore, logBuffer),
                 0, 2, TimeUnit.SECONDS
         );
 
         executor.scheduleAtFixedRate(
-                new ScheduledCarServer(semaphore),
+                new ScheduledCarServer(semaphore, logBuffer),
                 1, 3, TimeUnit.SECONDS
         );
 
