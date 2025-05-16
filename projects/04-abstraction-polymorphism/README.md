@@ -12,50 +12,41 @@ This project is designed to:
 - **Implement queue system** for managing cars in FIFO order.
 - **Provide car services** for charging/refueling and dining.
 - **Utilize dependency Injection and IoC** for flexible, modular service stations.
-- **Schedule tasks** for periodic car servicing.
+- **Schedule tasks** for periodic car servicing (separate reader and server schedulers).
 - **Perform unit tests** covering all components.
 
 ## **Project Structure**
 
-```
+```txt
 04-abstraction-polymorphism
 │
 ├── src
 │   ├── main
 │   │   └── java/org.sergedb.oop.abstraction
-│   │       ├── Main.java (Main entry point)
+│   │       ├── dispatcher (Semaphore dispatcher)
 │   │       ├── models (Car model)
 │   │       ├── queue (Queue interface and implementations)
+│   │       ├── scheduler (ScheduledCarReader, ScheduledCarServer)
 │   │       ├── services (Dineable, Refuelable, service implementations)
-│   │       ├── station (CarServiceStation class)
-│   │       ├── scheduler (Scheduler class)
-│   │       └── utils (FileUtils, JsonUtils from common library)
+│   │       ├── station (CarStation class)
+│   │       ├── utils (LogBuffer, StatsTracker)
+│   │       └── Main.java (Main entry point)
 │   ├── test (Unit tests for all components)
 │   └── resources
 │
 ├── queue (JSON car files)
-├── scripts (Car generator scripts)
+├── script (Car generator scripts)
 ├── pom.xml (Maven configuration)
 └── README.md
 ```
 
 ## **How It Works**
 
-- **Queues cars** from JSON files.
-- **Serves cars** based on type and passenger attributes.
-- **Scheduler** processes cars at set intervals.
+- **Queues cars** from JSON files using a scheduled reader.
+- **Serves cars** based on type and passenger attributes using a scheduled server.
+- **Two scheduled tasks**: one for reading new cars, one for serving cars, both with inactivity timeouts and automatic shutdown.
 - **Outputs statistics** matching the generator script.
 - **Unit tests** validate queue operations, services, station logic, and scheduler timing.
-
-## **Core Components**
-
-- **Entry Point:** `Main.java`
-- **Models:** `Car.java`
-- **Queue System:** `Queue.java`, `SimpleQueue.java`
-- **Services:** `Dineable`, `Refuelable`, `PeopleDinner`, `RobotDinner`, `ElectricStation`, `GasStation`
-- **Service Station:** `CarServiceStation.java`
-- **Scheduler:** `Scheduler.java`
-- **Utilities:** `FileUtils`, `JsonUtils`
 
 ## **Setup and Run**
 
@@ -65,11 +56,10 @@ This project is designed to:
 - Maven 3.9+
 
 ### **Build and Run**
+
 ```bash
 mvn clean install
-mvn exec:java -Dexec.mainClass="org.sergedb.oop.abstraction.CarServiceLabApp"
+mvn exec:java -Dexec.mainClass="org.sergedb.oop.abstraction.Main"
 ```
 
 This will initialize the system, process cars, and output final statistics.
-
-
