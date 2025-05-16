@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.sergedb.oop.abstraction.models.Car;
 
-public class StatsTrack {
+public class StatsTracker {
     
     private int electric = 0;
     private int gas = 0;
@@ -16,7 +16,7 @@ public class StatsTrack {
     private final Map<String, Integer> consumption = new HashMap<>();
     private final Map<String, Integer> stationCustomers = new HashMap<>();
 
-    public StatsTrack() {
+    public StatsTracker() {
         consumption.put("ELECTRIC", 0);
         consumption.put("GAS", 0);
     }

@@ -4,21 +4,21 @@ import org.sergedb.oop.abstraction.models.Car;
 import org.sergedb.oop.abstraction.queue.Queue;
 import org.sergedb.oop.abstraction.services.*;
 import org.sergedb.oop.abstraction.utils.LogBuffer;
-import org.sergedb.oop.abstraction.utils.StatsTrack;
+import org.sergedb.oop.abstraction.utils.StatsTracker;
 
 public class CarStation {
     private final String name;
     private final Queue<Car> queue;
     private final Dineable diningService;
     private final Refuelable refuelingService;
-    private final StatsTrack statsTrack;
+    private final StatsTracker statsTracker;
 
-    public CarStation(String name, Queue<Car> queue, Dineable diningService, Refuelable refuelingService, StatsTrack statsTrack) {
+    public CarStation(String name, Queue<Car> queue, Dineable diningService, Refuelable refuelingService, StatsTracker statsTracker) {
         this.name = name;
         this.queue = queue;
         this.diningService = diningService;
         this.refuelingService = refuelingService;
-        this.statsTrack = statsTrack;
+        this.statsTracker = statsTracker;
     }
 
     public void addCar(Car car) {
@@ -30,7 +30,7 @@ public class CarStation {
         while (!queue.isEmpty()) {
             Car car = queue.dequeue();
 
-            statsTrack.record(car, name);
+            statsTracker.record(car, name);
 
             boolean dined = false;
             boolean refueled = false;

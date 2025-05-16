@@ -10,7 +10,7 @@ import org.sergedb.oop.abstraction.services.PeopleDinner;
 import org.sergedb.oop.abstraction.services.RobotDinner;
 import org.sergedb.oop.abstraction.station.CarStation;
 import org.sergedb.oop.abstraction.utils.LogBuffer;
-import org.sergedb.oop.abstraction.utils.StatsTrack;
+import org.sergedb.oop.abstraction.utils.StatsTracker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +27,8 @@ public class Main {
 
         String queueDir = "/Users/sergiu/Projects/oop-java-projects/projects/04-abstraction-polymorphism/queue";
 
-        StatsTrack statsTrack = new StatsTrack();
-        List<CarStation> stations = createStations(statsTrack);
+        StatsTracker statsTracker = new StatsTracker();
+        List<CarStation> stations = createStations(statsTracker);
         Semaphore semaphore = new Semaphore(stations);
 
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
@@ -53,7 +53,7 @@ public class Main {
         Thread watcherThread = new Thread(() -> {
             try {
                 tasksDoneLatch.await();
-                System.out.println(statsTrack);
+                System.out.println(statsTracker);
                 System.out.println("[MAIN] Both tasks finished.");
                 shutdownAction.run();
             } catch (InterruptedException ignored) {}
@@ -82,12 +82,12 @@ public class Main {
         }
     }
 
-    private static List<CarStation> createStations(StatsTrack statsTrack) {
+    private static List<CarStation> createStations(StatsTracker statsTracker) {
         List<CarStation> stations = new ArrayList<>();
-        stations.add(new CarStation("GP", new SimpleQueue<>(), new PeopleDinner(), new GasStation(), statsTrack));
-        stations.add(new CarStation("GR", new SimpleQueue<>(), new RobotDinner(), new GasStation(), statsTrack));
-        stations.add(new CarStation("EP", new SimpleQueue<>(), new PeopleDinner(), new ElectricStation(), statsTrack));
-        stations.add(new CarStation("ER", new SimpleQueue<>(), new RobotDinner(), new ElectricStation(), statsTrack));
+        stations.add(new CarStation("GP", new SimpleQueue<>(), new PeopleDinner(), new GasStation(), statsTracker));
+        stations.add(new CarStation("GR", new SimpleQueue<>(), new RobotDinner(), new GasStation(), statsTracker));
+        stations.add(new CarStation("EP", new SimpleQueue<>(), new PeopleDinner(), new ElectricStation(), statsTracker));
+        stations.add(new CarStation("ER", new SimpleQueue<>(), new RobotDinner(), new ElectricStation(), statsTracker));
         return stations;
     }
 
