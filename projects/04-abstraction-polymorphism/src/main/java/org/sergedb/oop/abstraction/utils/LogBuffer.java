@@ -6,19 +6,19 @@ import java.util.List;
 public class LogBuffer {
     private final List<String> messages = new ArrayList<>();
 
-    public void log(String msg) {
+    public synchronized void log(String msg) {
         messages.add(msg);
     }
 
-    public void logf(String format, Object... args) {
+    public synchronized void logf(String format, Object... args) {
         messages.add(String.format(format, args));
     }
 
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return messages.isEmpty();
     }
 
-    public void flush(int tick) {
+    public synchronized void flush(int tick) {
         if (isEmpty()) {
             System.out.printf("[TICK #%d] No cars processed.\n", tick);
             return;

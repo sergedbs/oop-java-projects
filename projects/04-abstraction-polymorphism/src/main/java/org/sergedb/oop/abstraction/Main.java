@@ -1,5 +1,7 @@
 package org.sergedb.oop.abstraction;
 
+import org.sergedb.oop.common.utils.ArgumentParser;
+
 import org.sergedb.oop.abstraction.dispatcher.Semaphore;
 import org.sergedb.oop.abstraction.queue.SimpleQueue;
 import org.sergedb.oop.abstraction.scheduler.ScheduledCarReader;
@@ -14,6 +16,7 @@ import org.sergedb.oop.abstraction.utils.StatsTracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -23,10 +26,13 @@ import java.util.concurrent.CountDownLatch;
 public class Main {
     public static void main(String[] args) {
 
+        Map<String, List<String>> parsedArgs = ArgumentParser.parseArguments(args);
+
+        String defaultQueueDir = "projects/04-abstraction-polymorphism/queue";
+        List<String> queueDirList = ArgumentParser.getArgument(parsedArgs, "--dir", List.of(defaultQueueDir));
+        String queueDir = queueDirList.isEmpty() ? defaultQueueDir : queueDirList.getFirst();
+        
         LogBuffer logBuffer = new LogBuffer();
-
-        String queueDir = "/Users/sergiu/Projects/oop-java-projects/projects/04-abstraction-polymorphism/queue";
-
         StatsTracker statsTracker = new StatsTracker();
         List<CarStation> stations = createStations(statsTracker);
         Semaphore semaphore = new Semaphore(stations);
