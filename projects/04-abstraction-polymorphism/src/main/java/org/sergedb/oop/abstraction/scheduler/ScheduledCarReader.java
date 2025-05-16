@@ -19,8 +19,9 @@ public class ScheduledCarReader implements Runnable {
     private final LogBuffer logBuffer;
     private final CountDownLatch doneLatch;
 
+    private boolean isClosed = false;
     private long lastActivity = System.currentTimeMillis();
-    private static final long INACTIVITY_TIMEOUT_MS = 10_000; // 10 seconds
+    private static final long INACTIVITY_TIMEOUT_MS = 9_000; // 10 seconds
 
     public ScheduledCarReader(String queueDir, Semaphore semaphore, LogBuffer logBuffer, CountDownLatch doneLatch) {
         this.queueDir = queueDir;
@@ -59,8 +60,9 @@ public class ScheduledCarReader implements Runnable {
             lastActivity = System.currentTimeMillis();
         } else {
             long currentTime = System.currentTimeMillis();
-            if (currentTime - lastActivity > INACTIVITY_TIMEOUT_MS) {
-                logBuffer.logf("[SERVER] No new car for %d ms. Shutting down.", INACTIVITY_TIMEOUT_MS);
+            if (!isClosed && (currentTime - lastActivity > INACTIVITY_TIMEOUT_MS)) {
+                System.out.printf("[READER] No new car for %d ms. Gas Station is closing.%n", INACTIVITY_TIMEOUT_MS);
+                isClosed = true;
                 doneLatch.countDown();
             }
         }

@@ -24,9 +24,12 @@ public class Semaphore {
     }
 
     public boolean serveAll(LogBuffer logBuffer) {
+        boolean didWork = false;
         for (CarStation station : stations) {
-            station.serveCars(logBuffer);
+            if(station.serveCars(logBuffer)) {
+                didWork = true;
+            }
         }
-        return true;
+        return didWork;
     }
 }

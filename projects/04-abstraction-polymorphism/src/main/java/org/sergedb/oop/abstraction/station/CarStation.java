@@ -4,27 +4,33 @@ import org.sergedb.oop.abstraction.models.Car;
 import org.sergedb.oop.abstraction.queue.Queue;
 import org.sergedb.oop.abstraction.services.*;
 import org.sergedb.oop.abstraction.utils.LogBuffer;
+import org.sergedb.oop.abstraction.utils.StatsTrack;
 
 public class CarStation {
     private final String name;
     private final Queue<Car> queue;
     private final Dineable diningService;
     private final Refuelable refuelingService;
+    private final StatsTrack statsTrack;
 
-    public CarStation(String name, Queue<Car> queue, Dineable diningService, Refuelable refuelingService) {
+    public CarStation(String name, Queue<Car> queue, Dineable diningService, Refuelable refuelingService, StatsTrack statsTrack) {
         this.name = name;
         this.queue = queue;
         this.diningService = diningService;
         this.refuelingService = refuelingService;
+        this.statsTrack = statsTrack;
     }
 
     public void addCar(Car car) {
         queue.enqueue(car);
     }
 
-    public void serveCars(LogBuffer logBuffer) {
+    public boolean serveCars(LogBuffer logBuffer) {
+        boolean didWork = false;
         while (!queue.isEmpty()) {
             Car car = queue.dequeue();
+
+            statsTrack.record(car, name);
 
             boolean dined = false;
             boolean refueled = false;
@@ -48,7 +54,9 @@ public class CarStation {
             }
 
             logBuffer.log(result.toString());
+            didWork = true;
         }
+        return didWork;
     }
 
     public boolean canServe(Car car) {
@@ -62,5 +70,4 @@ public class CarStation {
 
         return fuelMatches && passengerMatches;
     }
-
 }

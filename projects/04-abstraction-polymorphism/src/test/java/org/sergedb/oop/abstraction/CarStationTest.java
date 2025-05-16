@@ -8,6 +8,7 @@ import org.sergedb.oop.abstraction.queue.SimpleQueue;
 import org.sergedb.oop.abstraction.services.*;
 import org.sergedb.oop.abstraction.station.CarStation;
 import org.sergedb.oop.abstraction.utils.LogBuffer;
+import org.sergedb.oop.abstraction.utils.StatsTrack;
 
 import java.util.List;
 
@@ -19,16 +20,20 @@ public class CarStationTest {
     private AbstractDineable dinner;
     private AbstractRefuelable refuel;
     private LogBuffer logBuffer;
+    private StatsTrack statsTrack;
 
     @Before
     public void setUp() {
         dinner = new PeopleDinner();
         refuel = new GasStation();
         logBuffer = new LogBuffer();
+        statsTrack = new StatsTrack();
     }
 
     @Test
     public void testServeCars() {
+
+        statsTrack.clear();
 
         Queue<Car> queue = new SimpleQueue<>();
 
@@ -40,7 +45,7 @@ public class CarStationTest {
         queue.enqueue(c2);
         queue.enqueue(c3);
 
-        CarStation station = new CarStation("GP", queue, dinner, refuel);
+        CarStation station = new CarStation("GP", queue, dinner, refuel, statsTrack);
 
         station.serveCars(logBuffer);
         logBuffer.flush(1);
@@ -52,12 +57,20 @@ public class CarStationTest {
         assertEquals(3, refuel.getRefueledCount());
 
         assertTrue(queue.isEmpty());
+
+        assertEquals(3, statsTrack.getGas());
+        assertEquals(0, statsTrack.getElectric());
+        assertEquals(3, statsTrack.getPeople());
+        assertEquals(0, statsTrack.getRobots());
+        assertEquals(2, statsTrack.getDining());
+        assertEquals(1, statsTrack.getNotDining());
+        assertEquals(90, statsTrack.getConsumption().get("GAS").intValue());
     }
 
     @Test
     public void testServeEmptyQueue() {
         Queue<Car> queue = new SimpleQueue<>();
-        CarStation station = new CarStation("GP", queue, dinner, refuel);
+        CarStation station = new CarStation("GP", queue, dinner, refuel, statsTrack);
 
         station.serveCars(logBuffer);
         logBuffer.flush(2);
@@ -74,7 +87,7 @@ public class CarStationTest {
         Queue<Car> queue = new SimpleQueue<>();
         queue.enqueue(new Car("4", "GAS", "PEOPLE", false, 15));
 
-        CarStation station = new CarStation("GP", queue, dinner, refuel);
+        CarStation station = new CarStation("GP", queue, dinner, refuel, statsTrack);
         station.serveCars(logBuffer);
         logBuffer.flush(3);
 

@@ -12,6 +12,7 @@ public class ScheduledCarServer implements Runnable {
     private final CountDownLatch doneLatch;
     private int tick = 0;
 
+    private boolean isClosed = false;
     private long lastActivity = System.currentTimeMillis();
     private static final long INACTIVITY_TIMEOUT_MS = 10_000; // 10 seconds
 
@@ -31,8 +32,9 @@ public class ScheduledCarServer implements Runnable {
             lastActivity = System.currentTimeMillis();
         } else {
             long currentTime = System.currentTimeMillis();
-            if (currentTime - lastActivity > INACTIVITY_TIMEOUT_MS) {
-                logBuffer.logf("[SERVER] No activity for %d ms. Shutting down.", INACTIVITY_TIMEOUT_MS);
+            if (!isClosed && (currentTime - lastActivity > INACTIVITY_TIMEOUT_MS)) {
+                System.out.printf("[SERVER] No activity for %d ms. Gas station closed.%n", INACTIVITY_TIMEOUT_MS);
+                isClosed = true;
                 doneLatch.countDown();
             }
         }

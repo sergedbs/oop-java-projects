@@ -10,6 +10,7 @@ import org.sergedb.oop.abstraction.services.PeopleDinner;
 import org.sergedb.oop.abstraction.services.RobotDinner;
 import org.sergedb.oop.abstraction.station.CarStation;
 import org.sergedb.oop.abstraction.utils.LogBuffer;
+import org.sergedb.oop.abstraction.utils.StatsTrack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class Main {
 
         String queueDir = "/Users/sergiu/Projects/oop-java-projects/projects/04-abstraction-polymorphism/queue";
 
-        List<CarStation> stations = createStations();
+        StatsTrack statsTrack = new StatsTrack();
+        List<CarStation> stations = createStations(statsTrack);
         Semaphore semaphore = new Semaphore(stations);
 
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
@@ -38,21 +40,26 @@ public class Main {
 
         Runtime.getRuntime().addShutdownHook(new Thread(shutdownAction));
 
-        new Thread(() -> {
+        Thread timeoutThread = new Thread(() -> {
             try {
-                Thread.sleep(100_000);
+                Thread.sleep(120_000);
                 System.out.println("[MAIN] Timeout reached.");
                 shutdownAction.run();
-            } catch (InterruptedException ignored) {} 
-        }).start();
+            } catch (InterruptedException ignored) {}
+        });
+        timeoutThread.setDaemon(true);
+        timeoutThread.start();
 
-        new Thread(() -> {
-        try {
-            tasksDoneLatch.await();
-            System.out.println("[MAIN] Both tasks finished (inactivity).");
-            shutdownAction.run();
-        } catch (InterruptedException ignored) {}
-    }).start();
+        Thread watcherThread = new Thread(() -> {
+            try {
+                tasksDoneLatch.await();
+                System.out.println(statsTrack);
+                System.out.println("[MAIN] Both tasks finished.");
+                shutdownAction.run();
+            } catch (InterruptedException ignored) {}
+        });
+        watcherThread.setDaemon(true);
+        watcherThread.start();
 
         try {
             executor.scheduleAtFixedRate(
@@ -75,12 +82,12 @@ public class Main {
         }
     }
 
-    private static List<CarStation> createStations() {
+    private static List<CarStation> createStations(StatsTrack statsTrack) {
         List<CarStation> stations = new ArrayList<>();
-        stations.add(new CarStation("GP", new SimpleQueue<>(), new PeopleDinner(), new GasStation()));
-        stations.add(new CarStation("GR", new SimpleQueue<>(), new RobotDinner(), new GasStation()));
-        stations.add(new CarStation("EP", new SimpleQueue<>(), new PeopleDinner(), new ElectricStation()));
-        stations.add(new CarStation("ER", new SimpleQueue<>(), new RobotDinner(), new ElectricStation()));
+        stations.add(new CarStation("GP", new SimpleQueue<>(), new PeopleDinner(), new GasStation(), statsTrack));
+        stations.add(new CarStation("GR", new SimpleQueue<>(), new RobotDinner(), new GasStation(), statsTrack));
+        stations.add(new CarStation("EP", new SimpleQueue<>(), new PeopleDinner(), new ElectricStation(), statsTrack));
+        stations.add(new CarStation("ER", new SimpleQueue<>(), new RobotDinner(), new ElectricStation(), statsTrack));
         return stations;
     }
 

@@ -9,6 +9,7 @@ import org.sergedb.oop.abstraction.services.*;
 import org.sergedb.oop.abstraction.station.CarStation;
 import org.sergedb.oop.abstraction.dispatcher.Semaphore;
 import org.sergedb.oop.abstraction.utils.LogBuffer;
+import org.sergedb.oop.abstraction.utils.StatsTrack;
 
 import java.util.*;
 
@@ -21,6 +22,7 @@ public class SemaphoreTest {
     private final List<AbstractDineable> dineServices = new ArrayList<>();
 
     private final LogBuffer logBuffer = new LogBuffer();
+    private StatsTrack statsTrack;
 
     @Before
     public void setupStations() {
@@ -34,9 +36,11 @@ public class SemaphoreTest {
 
     private void createStation(AbstractRefuelable refuel, AbstractDineable dine) {
         Queue<Car> queue = new SimpleQueue<>();
+        statsTrack = new StatsTrack();
+
         refuelServices.add(refuel);
         dineServices.add(dine);
-        stations.add(new CarStation("Test", queue, dine, refuel));
+        stations.add(new CarStation("Test", queue, dine, refuel, statsTrack));
     }
 
     @Test
