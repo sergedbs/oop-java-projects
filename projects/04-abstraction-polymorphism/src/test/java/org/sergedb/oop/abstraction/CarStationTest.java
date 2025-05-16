@@ -7,6 +7,7 @@ import org.sergedb.oop.abstraction.queue.Queue;
 import org.sergedb.oop.abstraction.queue.SimpleQueue;
 import org.sergedb.oop.abstraction.services.*;
 import org.sergedb.oop.abstraction.station.CarStation;
+import org.sergedb.oop.abstraction.utils.LogBuffer;
 
 import java.util.List;
 
@@ -17,11 +18,13 @@ public class CarStationTest {
 
     private AbstractDineable dinner;
     private AbstractRefuelable refuel;
+    private LogBuffer logBuffer;
 
     @Before
     public void setUp() {
         dinner = new PeopleDinner();
         refuel = new GasStation();
+        logBuffer = new LogBuffer();
     }
 
     @Test
@@ -37,9 +40,10 @@ public class CarStationTest {
         queue.enqueue(c2);
         queue.enqueue(c3);
 
-        CarStation station = new CarStation(queue, dinner, refuel);
+        CarStation station = new CarStation("GP", queue, dinner, refuel);
 
-        station.serveCars();
+        station.serveCars(logBuffer);
+        logBuffer.flush(1);
 
         assertEquals(List.of("1", "3"), dinner.getServedCars());
         assertEquals(2, dinner.getServedCount());
@@ -53,9 +57,10 @@ public class CarStationTest {
     @Test
     public void testServeEmptyQueue() {
         Queue<Car> queue = new SimpleQueue<>();
-        CarStation station = new CarStation(queue, dinner, refuel);
+        CarStation station = new CarStation("GP", queue, dinner, refuel);
 
-        station.serveCars();
+        station.serveCars(logBuffer);
+        logBuffer.flush(2);
 
         assertTrue(dinner.getServedCars().isEmpty());
         assertEquals(0, dinner.getServedCount());
@@ -69,8 +74,9 @@ public class CarStationTest {
         Queue<Car> queue = new SimpleQueue<>();
         queue.enqueue(new Car("4", "GAS", "PEOPLE", false, 15));
 
-        CarStation station = new CarStation(queue, dinner, refuel);
-        station.serveCars();
+        CarStation station = new CarStation("GP", queue, dinner, refuel);
+        station.serveCars(logBuffer);
+        logBuffer.flush(3);
 
         assertTrue(dinner.getServedCars().isEmpty());
         assertEquals(List.of("4"), refuel.getRefueledCars());

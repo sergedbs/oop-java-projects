@@ -10,6 +10,7 @@ public class ArrayQueue<T> implements Queue<T> {
     private int tail = 0;
     private int size = 0;
 
+    @SuppressWarnings("unchecked")
     public ArrayQueue() {
         data = (T[]) new Object[DEFAULT_CAPACITY];
     }
@@ -52,6 +53,7 @@ public class ArrayQueue<T> implements Queue<T> {
         return size;
     }
 
+    @SuppressWarnings("unchecked")
     private void resize() {
         int newCapacity = data.length * 2;
         T[] newData = (T[]) new Object[newCapacity];

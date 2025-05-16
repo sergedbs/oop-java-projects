@@ -65,7 +65,7 @@ public class AssistantManager {
             System.out.println(assistantName + ": Oh no! This display (ID: " + id + ") does not exist or is not added to your cart.");
         } else {
             if (assistant.removeDisplay(display)) {
-                System.out.println("Great choice! You bought a shiny, brand new" + display.model() + " (ID: " + id + "). Enjoy it!");
+                System.out.println("Great choice! You bought a shiny, brand new " + display.model() + " (ID: " + id + "). Enjoy it!");
             } else {
                 System.out.println("Oh no! Something went wrong. Please try again.");
             }
@@ -86,49 +86,50 @@ public class AssistantManager {
     }
 
     public void showMenu() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\n" + assistantName + ": Welcome to our displays store! Bellow are your options:");
-        while (true) {
-            System.out.println("\nOptions:");
-            System.out.println("A(ssign) B(uy) C(ompare) S(how) E(xit)");
-            String choice = scanner.nextLine().trim().toUpperCase();
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("\n" + assistantName + ": Welcome to our displays store! Bellow are your options:");
+            while (true) {
+                System.out.println("\nOptions:");
+                System.out.println("A(ssign) B(uy) C(ompare) S(how) E(xit)");
+                String choice = scanner.nextLine().trim().toUpperCase();
 
-            switch (choice) {
-                case "A":
-                    showAvailableDisplays();
-                    System.out.println("Enter display IDs to assign (comma-separated):");
-                    String[] idsToAssign = scanner.nextLine().split(",");
-                    List<Integer> idListToAssign = new ArrayList<>();
-                    for (String id : idsToAssign) {
-                        try {
-                            idListToAssign.add(Integer.parseInt(id.trim()));
-                        } catch (NumberFormatException e) {
-                            System.out.println("Invalid ID format: " + id);
+                switch (choice) {
+                    case "A":
+                        showAvailableDisplays();
+                        System.out.println("Enter display IDs to assign (comma-separated):");
+                        String[] idsToAssign = scanner.nextLine().split(",");
+                        List<Integer> idListToAssign = new ArrayList<>();
+                        for (String id : idsToAssign) {
+                            try {
+                                idListToAssign.add(Integer.parseInt(id.trim()));
+                            } catch (NumberFormatException e) {
+                                System.out.println("Invalid ID format: " + id);
+                            }
                         }
-                    }
-                    assignDisplays(idListToAssign);
-                    break;
-                case "B":
-                    showAssignedDisplays();
-                    System.out.println("Enter display ID to buy:");
-                    String idToBuy = scanner.nextLine().trim();
-                    try {
-                        buyDisplay(Integer.parseInt(idToBuy));
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid ID format: " + idToBuy);
-                    }
-                    break;
-                case "C":
-                    compareDisplays();
-                    break;
-                case "S":
-                    showAssignedDisplays();
-                    break;
-                case "E":
-                    System.out.println("Exiting...");
-                    return;
-                default:
-                    System.out.println("Invalid option. Please try again.");
+                        assignDisplays(idListToAssign);
+                        break;
+                    case "B":
+                        showAssignedDisplays();
+                        System.out.println("Enter display ID to buy:");
+                        String idToBuy = scanner.nextLine().trim();
+                        try {
+                            buyDisplay(Integer.parseInt(idToBuy));
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid ID format: " + idToBuy);
+                        }
+                        break;
+                    case "C":
+                        compareDisplays();
+                        break;
+                    case "S":
+                        showAssignedDisplays();
+                        break;
+                    case "E":
+                        System.out.println("Exiting...");
+                        return;
+                    default:
+                        System.out.println("Invalid option. Please try again.");
+                }
             }
         }
     }

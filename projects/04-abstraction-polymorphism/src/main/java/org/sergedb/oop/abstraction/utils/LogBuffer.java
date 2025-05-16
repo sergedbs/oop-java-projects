@@ -20,12 +20,13 @@ public class LogBuffer {
 
     public void flush(int tick) {
         if (isEmpty()) {
-            System.out.printf("[TICK #%d] No new cars processed.\n", tick);
+            System.out.printf("[TICK #%d] No cars processed.\n", tick);
             return;
         }
 
         System.out.printf("\n[TICK #%d] New car(s) processed.\n", tick);
         messages.forEach(System.out::println);
+        System.out.println("--------------------------------------------------\n");
         messages.clear();
     }
 }

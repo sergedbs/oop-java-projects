@@ -23,9 +23,10 @@ public class Semaphore {
         throw new IllegalArgumentException("No matching CarStation found for car: " + car.id());
     }
 
-    public void serveAll(LogBuffer logBuffer) {
+    public boolean serveAll(LogBuffer logBuffer) {
         for (CarStation station : stations) {
             station.serveCars(logBuffer);
         }
+        return true;
     }
 }

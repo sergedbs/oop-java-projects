@@ -8,6 +8,7 @@ import org.sergedb.oop.abstraction.queue.Queue;
 import org.sergedb.oop.abstraction.services.*;
 import org.sergedb.oop.abstraction.station.CarStation;
 import org.sergedb.oop.abstraction.dispatcher.Semaphore;
+import org.sergedb.oop.abstraction.utils.LogBuffer;
 
 import java.util.*;
 
@@ -18,6 +19,8 @@ public class SemaphoreTest {
     private final List<CarStation> stations = new ArrayList<>();
     private final List<AbstractRefuelable> refuelServices = new ArrayList<>();
     private final List<AbstractDineable> dineServices = new ArrayList<>();
+
+    private final LogBuffer logBuffer = new LogBuffer();
 
     @Before
     public void setupStations() {
@@ -33,7 +36,7 @@ public class SemaphoreTest {
         Queue<Car> queue = new SimpleQueue<>();
         refuelServices.add(refuel);
         dineServices.add(dine);
-        stations.add(new CarStation(queue, dine, refuel));
+        stations.add(new CarStation("Test", queue, dine, refuel));
     }
 
     @Test
@@ -49,7 +52,8 @@ public class SemaphoreTest {
 
         for (Car car : cars) dispatcher.addCar(car);
 
-        dispatcher.serveAll();
+        dispatcher.serveAll(logBuffer);
+        logBuffer.flush(1);
 
         // Assert per station:
         // Station 0: GAS + PEOPLE
